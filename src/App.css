@@ -1,38 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-image: url("../public/images/bg-desktop-dark.jpg");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-family: "Josefin Sans", sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+.App header {
+  margin-top: 10%;
+  font-size: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App #input {
+  height: 50px;
+  width: calc(50% + 20px);
+  margin-bottom: 15px;
 }
+
+.App #input input {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding-left: 10px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.App #todo-list-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 5;
+  background-color: white;
+  width: 50%;
+  border-radius: 5px;
+}
+
+.App #todo-list-container :first-child {
+  border-radius: 5px 5px 0 0;
+}
+
+.App #todo-list-container #list-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: calc(100% + 20px);
+  background-color: white;
+  font-size: 0.8rem;
+  border-radius: 0 0 5px 5px;
+}
+
+.App #todo-list-container #list-info #completion-status {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App #todo-list-container #list-info #completion-status p {
+  margin: 5px;
+}
+
+.App #todo-list-container #list-info #action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App #todo-list-container #list-info #action p {
+  margin: 5px;
+}
+
+.App #todo-list-container #list-item {
+  height: 30px;
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  z-index: 15;
+  background-color: aliceblue;
+  border-bottom: 2px solid darkblue;
+}
+
+.App #todo-list-container #list-item #circle {
+  height: 30px;
+  width: 30px;
+  border: 1px solid blue;
+  border-radius: 50%;
+}
+
+.App #todo-list-container #list-item p {
+  margin-left: 25px;
+}
+/*# sourceMappingURL=App.css.map */

@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Todo } from "./Todo";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>Todo</h1>
       </header>
+      <section id="input">
+        <input type="text" placeholder="Placeholder text for doto list input" />
+      </section>
+      <Todo />
+      {/* Add dynamic number */}
+      items left All Active Completed Clear Completed Drag and drop to reorder
+      list
+      <div className="attribution">
+        Challenge by
+        <a
+          href="https://www.frontendmentor.io?ref=challenge"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Frontend Mentor
+        </a>
+        . Coded by <a href="#boo">Your Name Here</a>.
+      </div>
     </div>
   );
 }
