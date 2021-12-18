@@ -1,132 +1,131 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 
-// html {
-//   margin: 0;
-//   padding: 0;
-//   font-size: 18px;
-//   font-family: "Josefin Sans", sans-serif;
-
-//   body {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     height: 100%;
-//     width: 100%;
-//
-.App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: url("../public/images/bg-desktop-dark.jpg");
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
-  width: 100%;
+body {
+  background-color: black;
   height: 100%;
-  margin: 0;
-  padding: 0;
-  font-size: 18px;
-  font-family: "Josefin Sans", sans-serif;
+  width: 100%;
 
-  header {
-    margin-top: 10%;
-    font-size: 2rem;
-  }
+  .App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: "Josefin Sans", sans-serif;
 
-  #input {
-    height: 50px;
-    width: calc(50% + 20px);
-    margin-bottom: 15px;
-
-    input {
-      height: 100%;
+    #background-img {
+      position: absolute;
+      background-image: url("../public/images/bg-desktop-dark.jpg");
+      background-size: 100% 100%;
+      background-position: top;
+      background-repeat: no-repeat;
+      height: 300px;
       width: 100%;
+      z-index: 0;
+    }
+
+    header {
+      width: calc(50% + 20px);
+      margin-top: 30px;
+      font-size: 2rem;
+      z-index: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    #input {
+      height: 50px;
+      width: calc(50% + 10px);
+      margin-bottom: 15px;
       border-radius: 5px;
       outline: none;
       border: none;
       padding-left: 10px;
       align-self: center;
       justify-self: center;
-    }
-  }
-
-  #todo-list-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 5;
-    background-color: white;
-    width: 50%;
-    border-radius: 5px;
-
-    :first-child {
-      border-radius: 5px 5px 0 0;
+      background-color: darkgrey;
+      z-index: 1;
     }
 
-    #list-info {
+    #todo-list-container {
       display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      width: calc(100% + 20px);
-      background-color: white;
-      font-size: 0.8rem;
-      border-radius: 0 0 5px 5px;
-
-      #completion-status {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        p {
-          margin: 5px;
-        }
-      }
-
-      #action {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        p {
-          margin: 5px;
-        }
-      }
-    }
-
-    // #list {
-    //   z-index: 10;
-    //   background-color: red;
-    //   height: 200px;
-    //   width: 100%;
-    //   border: none;
-    //   outline: none;
-    //   border-radius: 10px;
-    // }
-
-    #list-item {
-      height: 30px;
-      width: 100%;
-      padding: 10px;
-      margin: 0;
-      display: flex;
-      // justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      align-self: center;
-      z-index: 15;
-      background-color: aliceblue;
-      border-bottom: 2px solid darkblue;
+      z-index: 0;
+      background-color: white;
+      width: 50%;
+      border-radius: 5px;
 
-      #circle {
-        height: 30px;
-        width: 30px;
-        // background-color: blue;
-        border: 1px solid blue;
-        border-radius: 50%;
+      :first-child {
+        border-radius: 5px 5px 0 0;
       }
 
-      p {
-        margin-left: 25px;
+      #list-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: calc(100% + 20px);
+        background-color: white;
+        font-size: 0.8rem;
+        border-radius: 0 0 5px 5px;
+
+        #completion-status {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          p {
+            margin: 5px;
+          }
+        }
+
+        #clear-button {
+          border: none;
+          outline: none;
+          background-color: transparent;
+        }
+      }
+
+      // #list {
+      //   z-index: 10;
+      //   background-color: red;
+      //   height: 200px;
+      //   width: 100%;
+      //   border: none;
+      //   outline: none;
+      //   border-radius: 10px;
+      // }
+
+      #list-item {
+        height: 30px;
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+        display: flex;
+        // justify-content: space-between;
+        align-items: center;
+        align-self: center;
+        // z-index: 15;
+        background-color: aliceblue;
+        border-bottom: 2px solid darkblue;
+
+        #circle {
+          height: 30px;
+          width: 30px;
+          // background-color: blue;
+          border: 1px solid blue;
+          border-radius: 50%;
+        }
+
+        p {
+          margin-left: 25px;
+        }
       }
     }
   }
 }
-//   }
-// }

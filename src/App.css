@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
-.App {
+body {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+}
+
+body .App {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10,10 +16,6 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-image: url("../public/images/bg-desktop-dark.jpg");
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -22,20 +24,42 @@
   font-family: "Josefin Sans", sans-serif;
 }
 
-.App header {
-  margin-top: 10%;
-  font-size: 2rem;
-}
-
-.App #input {
-  height: 50px;
-  width: calc(50% + 20px);
-  margin-bottom: 15px;
-}
-
-.App #input input {
-  height: 100%;
+body .App #background-img {
+  position: absolute;
+  background-image: url("../public/images/bg-desktop-dark.jpg");
+  background-size: 100% 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  height: 300px;
   width: 100%;
+  z-index: 0;
+}
+
+body .App header {
+  width: calc(50% + 20px);
+  margin-top: 30px;
+  font-size: 2rem;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+}
+
+body .App #input {
+  height: 50px;
+  width: calc(50% + 10px);
+  margin-bottom: 15px;
   border-radius: 5px;
   outline: none;
   border: none;
@@ -45,9 +69,11 @@
       align-self: center;
   -ms-grid-column-align: center;
       justify-self: center;
+  background-color: darkgrey;
+  z-index: 1;
 }
 
-.App #todo-list-container {
+body .App #todo-list-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -58,17 +84,17 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  z-index: 5;
+  z-index: 0;
   background-color: white;
   width: 50%;
   border-radius: 5px;
 }
 
-.App #todo-list-container :first-child {
+body .App #todo-list-container :first-child {
   border-radius: 5px 5px 0 0;
 }
 
-.App #todo-list-container #list-info {
+body .App #todo-list-container #list-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -84,7 +110,7 @@
   border-radius: 0 0 5px 5px;
 }
 
-.App #todo-list-container #list-info #completion-status {
+body .App #todo-list-container #list-info #completion-status {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -96,27 +122,17 @@
           align-items: center;
 }
 
-.App #todo-list-container #list-info #completion-status p {
+body .App #todo-list-container #list-info #completion-status p {
   margin: 5px;
 }
 
-.App #todo-list-container #list-info #action {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+body .App #todo-list-container #list-info #clear-button {
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
 
-.App #todo-list-container #list-info #action p {
-  margin: 5px;
-}
-
-.App #todo-list-container #list-item {
+body .App #todo-list-container #list-item {
   height: 30px;
   width: 100%;
   padding: 10px;
@@ -129,19 +145,18 @@
           align-items: center;
   -ms-flex-item-align: center;
       align-self: center;
-  z-index: 15;
   background-color: aliceblue;
   border-bottom: 2px solid darkblue;
 }
 
-.App #todo-list-container #list-item #circle {
+body .App #todo-list-container #list-item #circle {
   height: 30px;
   width: 30px;
   border: 1px solid blue;
   border-radius: 50%;
 }
 
-.App #todo-list-container #list-item p {
+body .App #todo-list-container #list-item p {
   margin-left: 25px;
 }
 /*# sourceMappingURL=App.css.map */
