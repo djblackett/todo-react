@@ -36,14 +36,14 @@ export function TodoList(props) {
       });
     } else if (dataFilter === "active") {
       setFilteredData(() => {
-        return props.data.filter((entry) => entry.active === true);
+        return props.data.filter((entry) => entry.completed === false);
       });
     } else if (dataFilter === "completed") {
       setFilteredData(() => {
         return props.data.filter((entry) => entry.completed === true);
       });
     }
-  }, [dataFilter, props.data]);
+  }, [dataFilter, filteredData, props.data]);
 
   const handleListChange = (e) => {
     const colors = { inFocus: "cyan", notInFocus: "darkgrey" };
@@ -70,12 +70,6 @@ export function TodoList(props) {
     }
   };
 
-  // const handleClearCompleted = () => {
-  //   setFilteredData(() => {
-  //     return filteredData.filter((entry) => entry.completed === false);
-  //   });
-  // };
-
   return (
     <div id="todo-list-container">
       <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -99,6 +93,7 @@ export function TodoList(props) {
                           text={filteredData[i].text}
                           index={item.id}
                           completeItem={props.completeItem}
+                          listState={dataFilter}
                         />
                       </li>
                     )}

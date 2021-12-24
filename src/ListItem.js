@@ -1,14 +1,21 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import { ReactComponent as Check } from "./svg/icon-check.svg";
 
-export const ListItem = (props) => {
+export function ListItem(props) {
 
+const innerCircle = useRef(null);
 
+useEffect(() => {
+  if (props.listState === 'all' && props.completed) {
+    // this.style = {vi}
+innerCircle.current.style = {visibility: 'hidden'};
+  }
+}, [props.listState, props.completed
+]);
 
   const handleCheck = (e) => {
+      let innerCircle = e.target.firstChild.children[0];
     let check = e.target.lastChild;
-    // #CACDE8
-    // let darkActiveTextColor = 'hsl(234, 39%, 85%)';
     let darkActiveTextColor = 'rgb(202, 205, 232)';
     
     // let darkInactiveTextColor = 'hsl(233, 14%, 35%)';
@@ -34,7 +41,7 @@ export const ListItem = (props) => {
         textElement.style.color = textElement.style.color === darkActiveTextColor ? darkInactiveTextColor : darkActiveTextColor;
        // console.log(textElement.style.color);
 
-    let innerCircle = e.target.firstChild.children[0];
+  
     let isCircleVisible = getComputedStyle(innerCircle).visibility;
     innerCircle.style.visibility =
       isCircleVisible === "hidden" ? "visible" : "hidden";
@@ -49,7 +56,7 @@ export const ListItem = (props) => {
       <div id="outer-circle" onClick={handleCheck} >
         <div
           id="circle"
-          
+          ref={innerCircle}
           style={{ visibility: "visible" }}
         >
           <Check id="check" style={{ visibility: "hidden" }} />

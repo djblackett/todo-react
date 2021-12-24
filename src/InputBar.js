@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 export function InputBar(props) {
-  const [state, setState] = useState("");
-
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
       let text = event.target.value;
@@ -19,11 +17,16 @@ export function InputBar(props) {
   };
 
   return (
-    <input
-      id="input"
-      type="text"
-      placeholder="Enter your next todo"
-      onKeyDown={(e) => handleEnterPress(e)}
-    />
+    <div id="input-component">
+      <div id="outer-circle">
+        <div id="circle"></div>
+      </div>
+      <input
+        id="input"
+        type="text"
+        placeholder="Create a new todo..."
+        onKeyDown={(e) => handleEnterPress(e)}
+      />
+    </div>
   );
 }
