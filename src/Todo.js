@@ -9,6 +9,7 @@ export function Todo(props) {
       data={props.data}
       reorder={props.reorderData}
       completeItem={props.completeItem}
+      clearCompleted={props.clearCompleted}
     />
   );
 }
@@ -69,13 +70,11 @@ export function TodoList(props) {
     }
   };
 
-  const handleClearCompleted = () => {
-    setFilteredData(() => {
-      return filteredData.filter((entry) => entry.completed === false);
-    });
-  };
-
-  const handleAlterListItem = () => {};
+  // const handleClearCompleted = () => {
+  //   setFilteredData(() => {
+  //     return filteredData.filter((entry) => entry.completed === false);
+  //   });
+  // };
 
   return (
     <div id="todo-list-container">
@@ -98,6 +97,7 @@ export function TodoList(props) {
                       >
                         <ListItem
                           text={filteredData[i].text}
+                          index={item.id}
                           completeItem={props.completeItem}
                         />
                       </li>
@@ -113,7 +113,7 @@ export function TodoList(props) {
       <ListInfo
         data={filteredData}
         listChange={handleListChange}
-        clearCompleted={handleClearCompleted}
+        clearCompleted={props.clearCompleted}
       />
     </div>
   );

@@ -3,7 +3,7 @@
 body {
   background-color: black;
   height: 100%;
-  width: 100%;
+  width: 100vw;
 }
 
 body .App {
@@ -17,7 +17,7 @@ body .App {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -57,6 +57,12 @@ body .App header {
   color: white;
 }
 
+@media (max-width: 700px) {
+  body .App header {
+    width: 75%;
+  }
+}
+
 body .App #input {
   height: 50px;
   width: calc(50% + 10px);
@@ -74,6 +80,12 @@ body .App #input {
   z-index: 1;
 }
 
+@media (max-width: 700px) {
+  body .App #input {
+    width: 90%;
+  }
+}
+
 body .App #todo-list-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -87,15 +99,21 @@ body .App #todo-list-container {
       -ms-flex-align: center;
           align-items: center;
   z-index: 0;
-  background-color: #4d5066;
+  background-color: black;
   width: calc(50% + 20px);
   border-radius: 5px;
   -webkit-transition: height 1s ease-in-out;
   transition: height 1s ease-in-out;
+  overflow: hidden;
 }
 
-body .App #todo-list-container :first-child {
-  border-radius: 5px 5px 0 0;
+@media (max-width: 700px) {
+  body .App #todo-list-container {
+    width: 90%;
+  }
+  body .App #todo-list-container #list-item:last-of-type {
+    border-radius: 0 0 5px 5px;
+  }
 }
 
 body .App #todo-list-container .characters {
@@ -104,6 +122,13 @@ body .App #todo-list-container .characters {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+@media (max-width: 700px) {
+  body .App #todo-list-container .characters {
+    border-radius: 5px;
+    overflow: hidden;
+  }
 }
 
 body .App #todo-list-container .characters li {
@@ -123,8 +148,15 @@ body .App #todo-list-container #list-info {
   width: 100%;
   background-color: #25273c;
   font-size: 0.8rem;
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px;
   color: #4d5066;
+}
+
+@media (max-width: 700px) {
+  body .App #todo-list-container #list-info {
+    margin-top: 20px;
+    height: 30px;
+  }
 }
 
 body .App #todo-list-container #list-info #completion-status {
@@ -184,15 +216,20 @@ body .App #todo-list-container #list-info #clear-button:hover {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 700px) {
+body .App .drag {
+  text-align: center;
+  color: #4d5066;
+}
+
+@media (max-width: 500px) {
   header {
-    width: 100%;
+    width: 100vw;
   }
   #input {
-    width: 95%;
+    width: 95vw;
   }
   #todo-list-container {
-    width: 95%;
+    width: 95vw;
   }
 }
 /*# sourceMappingURL=App.css.map */

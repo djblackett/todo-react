@@ -1,7 +1,7 @@
 import "./sass/App.scss";
 import { Todo } from "./Todo";
 import { InputBar } from "./InputBar";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ReactComponent as MoonLogo } from "./svg/icon-moon.svg";
 
 const initialData = [
@@ -24,20 +24,25 @@ function App() {
     });
   };
 
+  const handleClearCompleted = () => {
+    const arrayCopy = [...data];
+    let notCompleted = arrayCopy.filter((elem) => !elem.completed);
+    setData(() => notCompleted);
+  };
+
   const handleReorderData = (newOrder) => {
     setData(() => newOrder);
   };
 
   //blarghhhhh
-  const handleCompleteItem = (completedItem) => {
+  const handleCompleteItem = (completedItemId) => {
     const arrayCopy = [...data];
-    for (let e of arrayCopy) {
-      if (e.id === completedItem.id) {
-        console.log(e);
-        let index = arrayCopy.indexOf(e);
-        e[index] = !completedItem.completed;
-      }
+    let element = arrayCopy.filter((item) => item.id === completedItemId)[0];
+    if (element) {
+      console.log(element);
+      element.completed = !element.completed;
     }
+
     console.log(arrayCopy);
     setData(() => arrayCopy);
   };
@@ -54,10 +59,10 @@ function App() {
         data={data}
         reorderData={handleReorderData}
         completeItem={handleCompleteItem}
+        clearCompleted={handleClearCompleted}
       />
-      {/* Add dynamic number */}
-      items left All Active Completed Clear Completed Drag and drop to reorder
-      list
+
+      <p className="drag">Drag and drop to reorder list</p>
       <div className="attribution">
         Challenge by
         <a
