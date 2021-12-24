@@ -1,12 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { ListInfo } from "./ListInfo";
+import { ListItem } from "./ListItem";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export function Todo(props) {
-  return <TodoList data={props.data} />;
+  return (
+    <TodoList
+      data={props.data}
+      reorder={props.reorderData}
+      completeItem={props.completeItem}
+    />
+  );
 }
 
-function TodoList(props) {
+export function TodoList(props) {
   const [dataFilter, setDataFilter] = useState("all");
   const [filteredData, setFilteredData] = useState(props.data);
+
+  const handleOnDragEnd = (result) => {
+    const items = Array.from(filteredData);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    // setFilteredData(items);
+    props.reorder(items);
+  };
+
+  // something up here: list won't stay ordered
 
   useEffect(() => {
     if (dataFilter === "all") {
@@ -24,57 +44,77 @@ function TodoList(props) {
     }
   }, [dataFilter, props.data]);
 
-  return (
-    <div id="todo-list-container">
-      {filteredData.map((item, i) => {
-        return <ListItem key={i} text={filteredData[i].text} />;
-      })}
-      <ListInfo data={filteredData} />
-    </div>
-  );
-}
+  const handleListChange = (e) => {
+    const colors = { inFocus: "cyan", notInFocus: "darkgrey" };
+    let element = e.target;
+    let all = document.getElementById("list-all");
+    let active = document.getElementById("list-active");
+    let completed = document.getElementById("list-completed");
 
-function ListItem(props) {
-  return (
-    <div id="list-item">
-      <div id="circle"></div>
-      <p>{props.text}</p>
-    </div>
-  );
-}
-
-function ListInfo(props) {
-  return (
-    <div id="list-info">
-      <p>{props.data.length} items left</p>
-      <div id="completion-status">
-        <p>all</p>
-        <p>active</p>
-        <p>completed</p>
-      </div>
-      <button id="clear-button">Clear Completed</button>
-    </div>
-  );
-}
-
-export function InputBar(props) {
-  const [state, setState] = useState("");
-
-  const handleEnterPress = (event) => {
-    if (event.key === "Enter") {
-      let text = event.target.value;
-      const newEntry = { text: text, completed: false, active: true };
-      props.handleInput(newEntry);
-      document.getElementById("input").value = "";
+    if (element === all) {
+      element.style.color = colors.inFocus;
+      active.style.color = colors.notInFocus;
+      completed.style.color = colors.notInFocus;
+      setDataFilter(() => "all");
+    } else if (element === active) {
+      element.style.color = colors.inFocus;
+      all.style.color = colors.notInFocus;
+      completed.style.color = colors.notInFocus;
+      setDataFilter(() => "active");
+    } else if (element === completed) {
+      element.style.color = colors.inFocus;
+      active.style.color = colors.notInFocus;
+      all.style.color = colors.notInFocus;
+      setDataFilter(() => "completed");
     }
   };
 
+  const handleClearCompleted = () => {
+    setFilteredData(() => {
+      return filteredData.filter((entry) => entry.completed === false);
+    });
+  };
+
+  const handleAlterListItem = () => {};
+
   return (
-    <input
-      id="input"
-      type="text"
-      placeholder="Enter your next todo"
-      onKeyDown={(e) => handleEnterPress(e)}
-    />
+    <div id="todo-list-container">
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="characters">
+          {(provided) => (
+            <ul
+              className="characters"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {filteredData.map((item, i) => {
+                return (
+                  <Draggable key={item.id} index={i} draggableId={item.id}>
+                    {(provided) => (
+                      <li
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <ListItem
+                          text={filteredData[i].text}
+                          completeItem={props.completeItem}
+                        />
+                      </li>
+                    )}
+                  </Draggable>
+                );
+              })}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
+      <ListInfo
+        data={filteredData}
+        listChange={handleListChange}
+        clearCompleted={handleClearCompleted}
+      />
+    </div>
   );
 }

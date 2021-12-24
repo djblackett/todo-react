@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+@import url(./components/_list-item.scss);
 body {
   background-color: black;
   height: 100%;
@@ -26,7 +27,7 @@ body .App {
 
 body .App #background-img {
   position: absolute;
-  background-image: url("../public/images/bg-desktop-dark.jpg");
+  background-image: url("../../public/images/bg-desktop-dark.jpg");
   background-size: 100% 100%;
   background-position: top;
   background-repeat: no-repeat;
@@ -69,7 +70,7 @@ body .App #input {
       align-self: center;
   -ms-grid-column-align: center;
       justify-self: center;
-  background-color: darkgrey;
+  background-color: #4d5066;
   z-index: 1;
 }
 
@@ -77,6 +78,7 @@ body .App #todo-list-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -85,13 +87,27 @@ body .App #todo-list-container {
       -ms-flex-align: center;
           align-items: center;
   z-index: 0;
-  background-color: white;
-  width: 50%;
+  background-color: #4d5066;
+  width: calc(50% + 20px);
   border-radius: 5px;
+  -webkit-transition: height 1s ease-in-out;
+  transition: height 1s ease-in-out;
 }
 
 body .App #todo-list-container :first-child {
   border-radius: 5px 5px 0 0;
+}
+
+body .App #todo-list-container .characters {
+  height: 100%;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body .App #todo-list-container .characters li {
+  width: 100%;
 }
 
 body .App #todo-list-container #list-info {
@@ -104,10 +120,11 @@ body .App #todo-list-container #list-info {
           flex-direction: row;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: calc(100% + 20px);
-  background-color: white;
+  width: 100%;
+  background-color: #25273c;
   font-size: 0.8rem;
   border-radius: 0 0 5px 5px;
+  color: #4d5066;
 }
 
 body .App #todo-list-container #list-info #completion-status {
@@ -122,41 +139,60 @@ body .App #todo-list-container #list-info #completion-status {
           align-items: center;
 }
 
-body .App #todo-list-container #list-info #completion-status p {
-  margin: 5px;
+body .App #todo-list-container #list-info #completion-status .list-option {
+  margin: 10px;
+}
+
+body .App #todo-list-container #list-info #completion-status .list-option:hover {
+  color: white;
+  cursor: pointer;
+}
+
+body .App #todo-list-container #list-info #completion-status #list-all {
+  color: cyan;
+}
+
+body .App #todo-list-container #list-info #completion-status #list-all:hover {
+  color: #e4e5f1;
+}
+
+body .App #todo-list-container #list-info #completion-status #list-active {
+  color: #4d5066;
+}
+
+body .App #todo-list-container #list-info #completion-status #list-active:hover {
+  color: #e4e5f1;
+}
+
+body .App #todo-list-container #list-info #completion-status #list-completed {
+  color: #4d5066;
+}
+
+body .App #todo-list-container #list-info #completion-status #list-completed:hover {
+  color: #e4e5f1;
 }
 
 body .App #todo-list-container #list-info #clear-button {
+  color: #4d5066;
   border: none;
   outline: none;
   background-color: transparent;
 }
 
-body .App #todo-list-container #list-item {
-  height: 30px;
-  width: 100%;
-  padding: 10px;
-  margin: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-item-align: center;
-      align-self: center;
-  background-color: aliceblue;
-  border-bottom: 2px solid darkblue;
+body .App #todo-list-container #list-info #clear-button:hover {
+  color: #e4e5f1;
+  cursor: pointer;
 }
 
-body .App #todo-list-container #list-item #circle {
-  height: 30px;
-  width: 30px;
-  border: 1px solid blue;
-  border-radius: 50%;
-}
-
-body .App #todo-list-container #list-item p {
-  margin-left: 25px;
+@media only screen and (max-width: 700px) {
+  header {
+    width: 100%;
+  }
+  #input {
+    width: 95%;
+  }
+  #todo-list-container {
+    width: 95%;
+  }
 }
 /*# sourceMappingURL=App.css.map */
