@@ -1,0 +1,63 @@
+@import "../helpers/variables";
+
+#list-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  background-color: $darkItem;
+  font-size: 1rem;
+  border-radius: 0 0 5px 5px;
+  color: $darkModeListColor;
+
+  @media (max-width: 700px) {
+    margin-top: 20px;
+    height: 30px;
+  }
+
+  #completion-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .list-option {
+      margin: 10px;
+      &:hover {
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    #list-all {
+      color: $brightBlue;
+      &:hover {
+        color: $darkModeHover;
+      }
+    }
+
+    #list-active {
+      color: $darkModeListColor;
+      &:hover {
+        color: $darkModeHover;
+      }
+    }
+
+    #list-completed {
+      color: $darkModeListColor;
+      &:hover {
+        color: $darkModeHover;
+      }
+    }
+  }
+
+  #clear-button {
+    color: $darkModeListColor;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    &:hover {
+      color: $darkModeHover;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,22 +1,23 @@
 @import "../helpers/variables";
 
-#list-item {
-  z-index: 4;
-  height: 30px;
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin: 0;
+#input-component {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
+  height: 52px;
+  width: calc(50% + 20px);
+  margin-bottom: 20px;
   background-color: hsl(235, 24%, 19%);
-  border-bottom: 2px solid hsl(237, 14%, 26%);
-  color: $darkItemText;
 
-  &:hover #crossIcon {
-    visibility: visible;
-    pointer-events: initial;
+  transition: color 500ms ease-in-out;
+
+  // padding: 0 10px;
+  border-radius: 5px;
+  overflow: hidden;
+
+  @media (max-width: 700px) {
+    width: 90%;
   }
 
   #outer-circle {
@@ -26,6 +27,7 @@
     width: $circleDiameter;
     border-radius: 50%;
     z-index: 5;
+    margin-left: 10px;
 
     #circle {
       // position: absolute;
@@ -41,25 +43,24 @@
       border-radius: 50%;
       z-index: 6;
       pointer-events: none;
-
-      #check {
-        pointer-events: none;
-      }
-
-      &:hover {
-        cursor: pointer;
-      }
     }
   }
-  #list-item-text {
-    // padding-left: 10px;
-    width: 80%;
-  }
 
-  #crossIcon {
-    width: 6%;
+  #input {
+    height: 50px;
+    width: 88%;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    padding-left: 10px;
     justify-self: flex-end;
-    visibility: hidden;
-    pointer-events: none;
+    background-color: hsl(235, 24%, 19%);
+    z-index: 1;
+    color: $lightGrayishBlue;
+
+    &::placeholder {
+      color: $lightGrayishBlue;
+      opacity: 1;
+    }
   }
 }

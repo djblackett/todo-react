@@ -10,6 +10,7 @@ export function Todo(props) {
       reorder={props.reorderData}
       completeItem={props.completeItem}
       clearCompleted={props.clearCompleted}
+      deleteItem={props.deleteItem}
     />
   );
 }
@@ -27,8 +28,6 @@ export function TodoList(props) {
     props.reorder(items);
   };
 
-  // something up here: list won't stay ordered
-
   useEffect(() => {
     if (dataFilter === "all") {
       setFilteredData(() => {
@@ -43,10 +42,13 @@ export function TodoList(props) {
         return props.data.filter((entry) => entry.completed === true);
       });
     }
-  }, [dataFilter, filteredData, props.data]);
+  }, [dataFilter, props.data]);
 
   const handleListChange = (e) => {
-    const colors = { inFocus: "cyan", notInFocus: "darkgrey" };
+    const colors = {
+      inFocus: "hsl(220, 98%, 61%)",
+      notInFocus: "hsl(233, 14%, 35%)",
+    };
     let element = e.target;
     let all = document.getElementById("list-all");
     let active = document.getElementById("list-active");
@@ -92,8 +94,10 @@ export function TodoList(props) {
                         <ListItem
                           text={filteredData[i].text}
                           index={item.id}
+                          completed={filteredData[i].completed}
                           completeItem={props.completeItem}
                           listState={dataFilter}
+                          deleteItem={props.deleteItem}
                         />
                       </li>
                     )}

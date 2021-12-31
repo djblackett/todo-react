@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
-@import url(./components/_list-item.scss);
-
-$darkModeListColor: hsl(233, 14%, 35%);
-$darkModeHover: hsl(236, 33%, 92%);
+@import "components/list-item";
+@import "components/input-bar";
+@import "components/list-info";
+@import "helpers/variables";
 
 body {
-  background-color: black;
+  background-color: $darkBackground;
   height: 100%;
   width: 100vw;
 
@@ -45,66 +45,18 @@ body {
       @media (max-width: 700px) {
         width: 75%;
       }
-    }
 
-    #input-component {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1;
-      height: 52px;
-      width: calc(50% + 20px);
-      margin-bottom: 20px;
-      background-color: hsl(235, 24%, 19%);
-      color: hsl(234, 39%, 85%);
+      #svgContainer {
+        height: 26px;
+        width: 26px;
 
-      // padding: 0 10px;
-      border-radius: 5px;
-      overflow: hidden;
-
-      @media (max-width: 700px) {
-        width: 90%;
-      }
-
-      #outer-circle {
-        display: flex;
-        background-image: linear-gradient(
-          hsl(192, 100%, 67%),
-          hsl(280, 87%, 65%)
-        );
-        height: 31px;
-        width: 31px;
-        border-radius: 50%;
-        z-index: 5;
-        margin-left: 10px;
-
-        #circle {
-          // position: absolute;
-          justify-content: center;
-          align-items: center;
-          height: 30px;
-          width: 30px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: hsl(235, 24%, 19%);
-          // margin: 15px;
-          border-radius: 50%;
-          z-index: 6;
+        svg {
           pointer-events: none;
         }
-      }
 
-      #input {
-        height: 50px;
-        width: 90%;
-        font-size: 1.2rem;
-        outline: none;
-        border: none;
-        padding-left: 10px;
-        justify-self: flex-end;
-        background-color: hsl(235, 24%, 19%);
-        z-index: 1;
+        path {
+          pointer-events: none;
+        }
       }
     }
 
@@ -141,69 +93,6 @@ body {
 
         li {
           width: 100%;
-        }
-      }
-
-      #list-info {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        width: 100%;
-        background-color: hsl(235, 24%, 19%);
-        font-size: 0.8rem;
-        border-radius: 5px;
-        color: $darkModeListColor;
-
-        @media (max-width: 700px) {
-          margin-top: 20px;
-          height: 30px;
-        }
-
-        #completion-status {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          // margin: 5px;
-
-          .list-option {
-            margin: 10px;
-            &:hover {
-              color: white;
-              cursor: pointer;
-            }
-          }
-
-          #list-all {
-            color: cyan;
-            &:hover {
-              color: $darkModeHover;
-            }
-          }
-
-          #list-active {
-            color: $darkModeListColor;
-            &:hover {
-              color: $darkModeHover;
-            }
-          }
-
-          #list-completed {
-            color: $darkModeListColor;
-            &:hover {
-              color: $darkModeHover;
-            }
-          }
-        }
-
-        #clear-button {
-          color: $darkModeListColor;
-          border: none;
-          outline: none;
-          background-color: transparent;
-          &:hover {
-            color: $darkModeHover;
-            cursor: pointer;
-          }
         }
       }
     }
