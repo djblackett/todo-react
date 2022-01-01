@@ -2,8 +2,6 @@ import "./sass/App.scss";
 import { Todo } from "./Todo";
 import { InputBar } from "./InputBar";
 import React, { useState } from "react";
-import { ReactComponent as MoonLogo } from "./svg/icon-moon.svg";
-import { ReactComponent as SunLogo } from "./svg/icon-sun.svg";
 
 const initialData = [
   { id: "1234", text: "I am a list item", completed: false, active: true },
@@ -24,22 +22,77 @@ function App() {
   const [data, setData] = useState(initialData);
 
   const [mode, setMode] = useState({
-    mode: "dark", image: vectorImages.moon
+    mode: "dark", image: vectorImages.sun
     
   });
 
   const handleLogoChange = () => {
     console.log("logo trigger clicked");
+    let backgroundImage = document.querySelector("#background-img");
+    let input = document.querySelector('#input');
+    let inputContainer = document.querySelector("#input-component");
+    let circles = document.querySelectorAll('#circle');
+    let html = document.querySelector('body');
+    let listItems = document.querySelectorAll("#list-item");
+    let listInfo = document.querySelector("#list-info");
+    let listContainer = document.querySelector("#todo-list-container");
+  
+
+
     if (mode.image === vectorImages.moon) {
-      console.log("moon");
-      setMode(() => {
-        return {mode: 'light', image: vectorImages.sun}
+
+       setMode(() => {
+        return {mode: 'dark', image: vectorImages.sun}
       });
+      
+      // dark mode
+  
+      
+      backgroundImage.className = 'background-img-dark';
+      input.className = 'input-dark';
+      inputContainer.className = 'input-component-dark';
+      circles.forEach(node => node.className = 'circle-dark');
+      html.style.backgroundColor = 'hsl(235, 21%, 11%)'; // $darkBackground
+      listItems.forEach(node => {
+        
+          let beginning = "list-item-";
+          let classPieces = node.className.split("-");
+          let end = classPieces[3];
+
+        
+        node.className = beginning + 'dark-' + end;
+      });
+      listInfo.className = 'list-info-dark';
+      listContainer.className = 'todo-list-container-dark';
+
     } else {
-      console.log("sun");
+      
+     
+
       setMode(() => {
-        return {mode: 'dark', image: vectorImages.moon}
+        return {mode: 'light', image: vectorImages.moon}
       });
+
+      // light mode
+      backgroundImage.className = 'background-img-light';
+      input.className = 'input-light';
+      inputContainer.className = 'input-component-light';
+      circles.forEach(node => node.className = 'circle-light');
+      html.style.backgroundColor = 'hsl(236, 33%, 92%)'; // $lightAppBackground
+      listItems.forEach(node => {
+        
+          let beginning = "list-item-";
+          let classPieces = node.className.split("-");
+          let end = classPieces[3];
+
+        
+        node.className = beginning + 'light-' + end;
+      });
+      listInfo.className = 'list-info-light';
+      listContainer.className = 'todo-list-container-light';
+
+      // const elements = document.querySelectorAll(".dark");
+      // elements.forEach(node => node.className = 'light');
     }
   };
 
@@ -80,7 +133,7 @@ function App() {
 
   return (
     <div className="App">
-      <div id="background-img"></div>
+      <div class="background-img-dark dark" id="background-img"></div>
       <header>
         <h1>TODO</h1>
           <div id="svgContainer"
@@ -99,19 +152,20 @@ function App() {
         completeItem={handleCompleteItem}
         clearCompleted={handleClearCompleted}
         deleteItem={handleDeleteItem}
+        mode={mode.mode}
       />
 
       <p className="drag">Drag and drop to reorder list</p>
       <div className="attribution">
-        Challenge by
+        Challenge by {' '}
         <a
           href="https://www.frontendmentor.io?ref=challenge"
           target="_blank"
           rel="noreferrer"
         >
-          Frontend Mentor
+            Frontend Mentor
         </a>
-        . Coded by <a href="#boo">Your Name Here</a>.
+        . Coded by <a href="#boo">David Andrea</a>.
       </div>
     </div>
   );

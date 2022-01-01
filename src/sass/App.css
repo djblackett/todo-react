@@ -1,4 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+.list-item-dark-active {
+  background-color: #25273c;
+  border-bottom: 2px solid #393a4c;
+  color: #cacde8;
+  text-decoration: initial;
+}
+
+.list-item-dark-complete {
+  background-color: #25273c;
+  border-bottom: 2px solid #393a4c;
+  color: #4d5066;
+  text-decoration: line-through;
+}
+
+.list-item-light-active {
+  background-color: #fafafa;
+  border-bottom: 2px solid #d2d3db;
+  color: #484b6a;
+  text-decoration: initial;
+}
+
+.list-item-light-complete {
+  background-color: #fafafa;
+  border-bottom: 2px solid #d2d3db;
+  color: #9394a5;
+  text-decoration: line-through;
+}
+
 #list-item {
   z-index: 4;
   height: 30px;
@@ -18,9 +46,6 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #25273c;
-  border-bottom: 2px solid #393a4c;
-  color: #777a92;
 }
 
 #list-item:hover #crossIcon {
@@ -54,10 +79,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #25273c;
   border-radius: 50%;
   z-index: 6;
   pointer-events: none;
+}
+
+#list-item #outer-circle #circle .check-hidden {
+  visibility: hidden;
+}
+
+#list-item #outer-circle #circle .check-visible {
+  visibility: visible;
 }
 
 #list-item #outer-circle #circle #check {
@@ -79,6 +111,14 @@
   pointer-events: none;
 }
 
+.input-component-light {
+  background-color: #fafafa;
+}
+
+.input-component-dark {
+  background-color: #25273c;
+}
+
 #input-component {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -93,7 +133,6 @@
   height: 52px;
   width: calc(50% + 20px);
   margin-bottom: 20px;
-  background-color: #25273c;
   -webkit-transition: color 500ms ease-in-out;
   transition: color 500ms ease-in-out;
   border-radius: 5px;
@@ -133,10 +172,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #25273c;
   border-radius: 50%;
   z-index: 6;
   pointer-events: none;
+}
+
+#input-component .input-dark {
+  background-color: #25273c;
+  color: #cacde8;
+}
+
+#input-component .input-light {
+  background-color: #fafafa;
+  color: #484b6a;
 }
 
 #input-component #input {
@@ -147,29 +195,18 @@
   border: none;
   padding-left: 10px;
   justify-self: flex-end;
-  background-color: #25273c;
+  font-weight: bold;
   z-index: 1;
-  color: #cacde8;
 }
 
-#input-component #input::-webkit-input-placeholder {
-  color: #cacde8;
-  opacity: 1;
+.list-info-dark {
+  background-color: #25273c;
+  color: #4d5066;
 }
 
-#input-component #input:-ms-input-placeholder {
-  color: #cacde8;
-  opacity: 1;
-}
-
-#input-component #input::-ms-input-placeholder {
-  color: #cacde8;
-  opacity: 1;
-}
-
-#input-component #input::placeholder {
-  color: #cacde8;
-  opacity: 1;
+.list-info-light {
+  background-color: #fafafa;
+  color: #484b6a;
 }
 
 #list-info {
@@ -183,10 +220,8 @@
   -ms-flex-pack: distribute;
       justify-content: space-around;
   width: 100%;
-  background-color: #25273c;
   font-size: 1rem;
   border-radius: 0 0 5px 5px;
-  color: #4d5066;
 }
 
 @media (max-width: 700px) {
@@ -278,9 +313,16 @@ body .App {
   font-family: "Josefin Sans", sans-serif;
 }
 
+body .App .background-img-dark {
+  background-image: url("../../public/images/bg-desktop-dark.jpg");
+}
+
+body .App .background-img-light {
+  background-image: url("../../public/images/bg-desktop-light.jpg");
+}
+
 body .App #background-img {
   position: absolute;
-  background-image: url("../../public/images/bg-desktop-dark.jpg");
   background-size: 100% 100%;
   background-position: top;
   background-repeat: no-repeat;
@@ -329,7 +371,24 @@ body .App header #svgContainer path {
   pointer-events: none;
 }
 
+body .App .circle-dark {
+  background-color: #25273c;
+}
+
+body .App .circle-light {
+  background-color: #fafafa;
+}
+
+body .App .circle-hidden {
+  visibility: hidden;
+}
+
+body .App .circle-visible {
+  visibility: visible;
+}
+
 body .App #todo-list-container {
+  background-color: transparent;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -342,7 +401,6 @@ body .App #todo-list-container {
       -ms-flex-align: center;
           align-items: center;
   z-index: 0;
-  background-color: black;
   width: calc(50% + 20px);
   border-radius: 5px;
   -webkit-transition: height 1s ease-in-out;
@@ -380,6 +438,10 @@ body .App #todo-list-container .characters li {
 
 body .App .drag {
   text-align: center;
+  color: #4d5066;
+}
+
+body .attribution {
   color: #4d5066;
 }
 /*# sourceMappingURL=App.css.map */

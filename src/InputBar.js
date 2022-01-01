@@ -17,12 +17,13 @@ export function InputBar(props) {
   };
 
   return (
-    <div id="input-component">
+    <div id="input-component" class="input-component-dark dark">
       <div id="outer-circle">
-        <div id="circle"></div>
+        <div id="circle" class="circle-dark"></div>
       </div>
       <input
         id="input"
+        class="input-dark dark"
         type="text"
         placeholder="Create a new todo..."
         onKeyDown={(e) => handleEnterPress(e)}

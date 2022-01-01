@@ -11,6 +11,7 @@ export function Todo(props) {
       completeItem={props.completeItem}
       clearCompleted={props.clearCompleted}
       deleteItem={props.deleteItem}
+      mode={props.mode}
     />
   );
 }
@@ -73,7 +74,7 @@ export function TodoList(props) {
   };
 
   return (
-    <div id="todo-list-container">
+    <div id="todo-list-container" class="todo-list-container-dark">
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
           {(provided) => (
@@ -98,6 +99,7 @@ export function TodoList(props) {
                           completeItem={props.completeItem}
                           listState={dataFilter}
                           deleteItem={props.deleteItem}
+                          mode={props.mode}
                         />
                       </li>
                     )}

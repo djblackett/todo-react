@@ -1,5 +1,13 @@
 @import "../helpers/variables";
 
+.input-component-light {
+  background-color: $lightItemBackground;
+}
+
+.input-component-dark {
+  background-color: $darkItem;
+}
+
 #input-component {
   display: flex;
   justify-content: space-between;
@@ -8,7 +16,6 @@
   height: 52px;
   width: calc(50% + 20px);
   margin-bottom: 20px;
-  background-color: hsl(235, 24%, 19%);
 
   transition: color 500ms ease-in-out;
 
@@ -30,7 +37,6 @@
     margin-left: 10px;
 
     #circle {
-      // position: absolute;
       justify-content: center;
       align-items: center;
       height: calc($circleDiameter - 1px);
@@ -38,12 +44,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: hsl(235, 24%, 19%);
-      // margin: 15px;
       border-radius: 50%;
       z-index: 6;
       pointer-events: none;
     }
+  }
+
+  .input-dark {
+    background-color: $darkItem;
+    color: $darkItemText1;
+  }
+
+  .input-light {
+    background-color: $lightItemBackground;
+    color: $lightActiveText;
   }
 
   #input {
@@ -54,13 +68,13 @@
     border: none;
     padding-left: 10px;
     justify-self: flex-end;
-    background-color: hsl(235, 24%, 19%);
-    z-index: 1;
-    color: $lightGrayishBlue;
+    font-weight: bold;
 
-    &::placeholder {
-      color: $lightGrayishBlue;
-      opacity: 1;
-    }
+    z-index: 1;
+
+    // &::placeholder {
+    //   color: $lightGrayishBlue;
+    //   opacity: 1;
+    // }
   }
 }

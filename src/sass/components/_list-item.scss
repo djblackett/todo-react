@@ -1,5 +1,33 @@
 @import "../helpers/variables";
 
+.list-item-dark-active {
+  background-color: $darkItem;
+  border-bottom: 2px solid $darkListItemBorder;
+  color: $darkItemText1;
+  text-decoration: initial;
+}
+
+.list-item-dark-complete {
+  background-color: $darkItem;
+  border-bottom: 2px solid $darkListItemBorder;
+  color: $darkModeListColor;
+  text-decoration: line-through;
+}
+
+.list-item-light-active {
+  background-color: $lightItemBackground;
+  border-bottom: 2px solid $lightListItemBorder;
+  color: $lightActiveText;
+  text-decoration: initial;
+}
+
+.list-item-light-complete {
+  background-color: $lightItemBackground;
+  border-bottom: 2px solid $lightListItemBorder;
+  color: $lightListInfo;
+  text-decoration: line-through;
+}
+
 #list-item {
   z-index: 4;
   height: 30px;
@@ -10,9 +38,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: hsl(235, 24%, 19%);
-  border-bottom: 2px solid hsl(237, 14%, 26%);
-  color: $darkItemText;
 
   &:hover #crossIcon {
     visibility: visible;
@@ -36,11 +61,19 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: hsl(235, 24%, 19%);
+
       // margin: 15px;
       border-radius: 50%;
       z-index: 6;
       pointer-events: none;
+
+      .check-hidden {
+        visibility: hidden;
+      }
+
+      .check-visible {
+        visibility: visible;
+      }
 
       #check {
         pointer-events: none;

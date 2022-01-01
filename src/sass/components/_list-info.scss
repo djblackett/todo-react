@@ -1,14 +1,23 @@
 @import "../helpers/variables";
 
+.list-info-dark {
+  background-color: $darkItem;
+  color: $darkModeListColor;
+}
+
+.list-info-light {
+  background-color: $lightItemBackground;
+  color: $lightActiveText;
+}
+
 #list-info {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
-  background-color: $darkItem;
+
   font-size: 1rem;
   border-radius: 0 0 5px 5px;
-  color: $darkModeListColor;
 
   @media (max-width: 700px) {
     margin-top: 20px;

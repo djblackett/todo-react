@@ -19,7 +19,7 @@ export function ListInfo(props) {
   };
 
   return (
-    <div id="list-info">
+    <div id="list-info" class="list-info-dark">
       <p>{props.data.length} items left</p>
       <div id="completion-status">
         <p id="list-all" className="list-option" onClick={props.listChange}>

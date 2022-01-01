@@ -19,10 +19,18 @@ body {
     padding: 0;
     font-size: 18px;
     font-family: "Josefin Sans", sans-serif;
+    // background-color: inherit;
+
+    .background-img-dark {
+      background-image: url("../../public/images/bg-desktop-dark.jpg");
+    }
+
+    .background-img-light {
+      background-image: url("../../public/images/bg-desktop-light.jpg");
+    }
 
     #background-img {
       position: absolute;
-      background-image: url("../../public/images/bg-desktop-dark.jpg");
       background-size: 100% 100%;
       background-position: top;
       background-repeat: no-repeat;
@@ -60,13 +68,38 @@ body {
       }
     }
 
+    .circle-dark {
+      background-color: $darkItem;
+    }
+
+    .circle-light {
+      background-color: $lightItemBackground;
+    }
+
+    .circle-hidden {
+      visibility: hidden;
+    }
+
+    .circle-visible {
+      visibility: visible;
+    }
+
+    // Keeping these in case I decide to go back
+    // .todo-list-container-dark {
+    //   background-color: $darkItem;
+    // }
+
+    // .todo-list-container-light {
+    //   background-color: $lightItemBackground;
+    // }
+
     #todo-list-container {
+      background-color: transparent;
       display: flex;
       height: auto;
       flex-direction: column;
       align-items: center;
       z-index: 0;
-      background-color: black;
       width: calc(50% + 20px);
       border-radius: 5px;
       transition: height 1s ease-in-out;
@@ -100,5 +133,9 @@ body {
       text-align: center;
       color: $darkModeListColor;
     }
+  }
+
+  .attribution {
+    color: $darkModeListColor;
   }
 }
