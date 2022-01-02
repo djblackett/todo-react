@@ -18,9 +18,13 @@ export function ListInfo(props) {
     props.clearCompleted();
   };
 
+  const handleItemsLeft = () => {
+    return props.data.filter((item) => !item.completed).length;
+  };
+
   return (
     <div id="list-info" class="list-info-dark">
-      <p>{props.data.length} items left</p>
+      <p>{handleItemsLeft()} items left</p>
       <div id="completion-status">
         <p id="list-all" className="list-option" onClick={props.listChange}>
           all
