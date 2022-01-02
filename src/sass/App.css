@@ -47,6 +47,8 @@
       -ms-flex-align: center;
           align-items: center;
   border-radius: 0;
+  -webkit-filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
+          filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
 }
 
 #list-item:hover #crossIcon {
@@ -140,6 +142,8 @@
   height: 52px;
   width: calc(50% + 20px);
   margin-bottom: 20px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+          box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   -webkit-transition: color 500ms ease-in-out;
   transition: color 500ms ease-in-out;
   border-radius: 5px;
@@ -239,6 +243,7 @@
   font-size: 1rem;
   border-radius: 0 0 5px 5px;
   min-height: 44px;
+  z-index: 5;
 }
 
 @media (max-width: 700px) {
@@ -371,6 +376,11 @@ body .App header {
   color: white;
 }
 
+body .App header h1 {
+  -webkit-filter: drop-shadow(0.35rem 0.35rem 0.4rem black);
+          filter: drop-shadow(0.35rem 0.35rem 0.4rem black);
+}
+
 @media (max-width: 700px) {
   body .App header {
     width: 75%;
@@ -385,6 +395,8 @@ body .App header #svgContainer {
 
 body .App header #svgContainer svg {
   pointer-events: none;
+  -webkit-filter: drop-shadow(0.35rem 0.35rem 0.4rem black);
+          filter: drop-shadow(0.35rem 0.35rem 0.4rem black);
 }
 
 body .App header #svgContainer path {
@@ -426,6 +438,8 @@ body .App #todo-list-container {
   -webkit-transition: height 1s ease-in-out;
   transition: height 1s ease-in-out;
   overflow: hidden;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+          box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 @media (max-width: 700px) {
