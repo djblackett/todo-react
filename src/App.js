@@ -4,13 +4,12 @@ import { InputBar } from "./InputBar";
 import React, { useState } from "react";
 
 const initialData = [
-  { id: "1234", text: "I am a list item", completed: false, active: true },
-  { id: "1235", text: "Take out the trash", completed: false, active: true },
+  { id: "1234", text: "Welcome to your new todo list", completed: false},
+  { id: "1235", text: "Touch the sun to switch to light mode", completed: false},
   {
     id: "1236",
-    text: "Blah blah blah. Computer stuff. Blah!",
-    completed: false,
-    active: true,
+    text: "Careful now. Refreshing the page will reset the list... ",
+    completed: false
   },
 ];
 
