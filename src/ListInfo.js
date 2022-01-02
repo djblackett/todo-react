@@ -22,25 +22,45 @@ export function ListInfo(props) {
     return props.data.filter((item) => !item.completed).length;
   };
 
+  const getModeClass = () => {
+    return "list-option list-option-unselected-" + props.mode;
+  };
+
+  const getClearButtonMode = () => {
+    return "clear-button-" + props.mode;
+  };
+
   return (
     <div id="list-info" class="list-info-dark">
       <p>{handleItemsLeft()} items left</p>
       <div id="completion-status">
-        <p id="list-all" className="list-option" onClick={props.listChange}>
-          all
+        <p
+          id="list-all"
+          className="list-option list-option-selected"
+          onClick={props.listChange}
+        >
+          All
         </p>
-        <p id="list-active" className="list-option" onClick={props.listChange}>
-          active
+        <p
+          id="list-active"
+          className={getModeClass()}
+          onClick={props.listChange}
+        >
+          Active
         </p>
         <p
           id="list-completed"
-          className="list-option"
+          className={getModeClass()}
           onClick={props.listChange}
         >
-          completed
+          Completed
         </p>
       </div>
-      <button id="clear-button" onClick={clickFunctions}>
+      <button
+        id="clear-button"
+        class={getClearButtonMode()}
+        onClick={clickFunctions}
+      >
         Clear Completed
       </button>
     </div>

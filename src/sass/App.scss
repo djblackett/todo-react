@@ -4,6 +4,11 @@
 @import "components/list-info";
 @import "helpers/variables";
 
+html {
+  font-size: 18px;
+  font-family: "Josefin Sans", sans-serif;
+}
+
 body {
   background-color: $darkBackground;
   height: 100%;
@@ -109,6 +114,7 @@ body {
 
       @media (max-width: 700px) {
         width: 90%;
+        box-shadow: none;
       }
 
       .characters {
@@ -117,20 +123,28 @@ body {
         list-style: none;
         padding: 0;
         margin: 0;
+        background-color: transparent;
 
         @media (max-width: 700px) {
           border-radius: 5px;
           overflow: hidden;
+          box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+            rgba(0, 0, 0, 0.23) 0px 6px 6px;
         }
 
         li {
           width: 100%;
+          &:last-of-type {
+            #list-item {
+              border-bottom: none;
+            }
+          }
         }
       }
     }
     .drag {
       text-align: center;
-      color: $darkModeListColor;
+      // color: $darkModeListColor;
     }
   }
 

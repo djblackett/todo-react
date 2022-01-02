@@ -45,36 +45,36 @@ export function TodoList(props) {
     }
   }, [dataFilter, props.data]);
 
+  const getModeClass = () => {
+    return "list-option list-option-unselected-" + props.mode;
+  };
+
   const handleListChange = (e) => {
-    const colors = {
-      inFocus: "hsl(220, 98%, 61%)",
-      notInFocus: "hsl(233, 14%, 35%)",
-    };
     let element = e.target;
     let all = document.getElementById("list-all");
     let active = document.getElementById("list-active");
     let completed = document.getElementById("list-completed");
 
     if (element === all) {
-      element.style.color = colors.inFocus;
-      active.style.color = colors.notInFocus;
-      completed.style.color = colors.notInFocus;
+      element.setAttribute("class", "list-option list-option-selected");
+      active.setAttribute("class", getModeClass());
+      completed.setAttribute("class", getModeClass());
       setDataFilter(() => "all");
     } else if (element === active) {
-      element.style.color = colors.inFocus;
-      all.style.color = colors.notInFocus;
-      completed.style.color = colors.notInFocus;
+      element.setAttribute("class", "list-option list-option-selected");
+      all.setAttribute("class", getModeClass());
+      completed.setAttribute("class", getModeClass());
       setDataFilter(() => "active");
     } else if (element === completed) {
-      element.style.color = colors.inFocus;
-      active.style.color = colors.notInFocus;
-      all.style.color = colors.notInFocus;
+      element.setAttribute("class", "list-option list-option-selected");
+      active.setAttribute("class", getModeClass());
+      all.setAttribute("class", getModeClass());
       setDataFilter(() => "completed");
     }
   };
 
   return (
-    <div id="todo-list-container" class="todo-list-container-dark">
+    <div id="todo-list-container">
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
           {(provided) => (
@@ -120,6 +120,7 @@ export function TodoList(props) {
         data={filteredData}
         listChange={handleListChange}
         clearCompleted={props.clearCompleted}
+        mode={props.mode}
       />
     </div>
   );

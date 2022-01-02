@@ -28,9 +28,13 @@
   text-decoration: line-through;
 }
 
+#list-item:last {
+  border-bottom: none;
+}
+
 #list-item {
   z-index: 4;
-  height: 30px;
+  height: $listItemHeight;
   width: calc(100% - 20px);
   padding: 10px;
   margin: 0;
