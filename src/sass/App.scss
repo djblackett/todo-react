@@ -57,6 +57,7 @@ body {
       #svgContainer {
         height: 26px;
         width: 26px;
+        cursor: pointer;
 
         svg {
           pointer-events: none;
@@ -84,15 +85,6 @@ body {
       visibility: visible;
     }
 
-    // Keeping these in case I decide to go back
-    // .todo-list-container-dark {
-    //   background-color: $darkItem;
-    // }
-
-    // .todo-list-container-light {
-    //   background-color: $lightItemBackground;
-    // }
-
     #todo-list-container {
       background-color: transparent;
       display: flex;
@@ -107,9 +99,6 @@ body {
 
       @media (max-width: 700px) {
         width: 90%;
-        #list-item:last-of-type {
-          border-radius: 0 0 5px 5px;
-        }
       }
 
       .characters {

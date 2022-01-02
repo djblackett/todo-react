@@ -38,6 +38,11 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  border-radius: 0;
+
+  @media (max-width: 700px) {
+    
+  }
 
   &:hover #crossIcon {
     visibility: visible;
@@ -87,6 +92,10 @@
   #list-item-text {
     // padding-left: 10px;
     width: 80%;
+
+    @media (max-width: 700px) {
+      font-size: 14px;
+    }
   }
 
   #crossIcon {

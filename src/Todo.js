@@ -85,7 +85,12 @@ export function TodoList(props) {
             >
               {filteredData.map((item, i) => {
                 return (
-                  <Draggable key={item.id} index={i} draggableId={item.id}>
+                  <Draggable
+                    key={item.id}
+                    index={i}
+                    draggableId={item.id}
+                    id="inner-list-container"
+                  >
                     {(provided) => (
                       <li
                         ref={provided.innerRef}
