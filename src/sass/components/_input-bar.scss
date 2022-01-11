@@ -13,14 +13,10 @@
   justify-content: space-between;
   align-items: center;
   z-index: 1;
-  height: 52px;
+  height: $listItemHeight;
   width: calc(50% + 20px);
   margin-bottom: 20px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-
-  transition: color 500ms ease-in-out;
-
-  // padding: 0 10px;
   border-radius: 5px;
   overflow: hidden;
 
@@ -62,7 +58,7 @@
   }
 
   #input {
-    height: 50px;
+    height: $listItemHeight;
     width: 90%;
     font-size: 1rem;
     outline: none;

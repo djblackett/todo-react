@@ -92,8 +92,6 @@ function App() {
       listInfo.className = 'list-info-light';
       listContainer.className = 'todo-list-container-light';
 
-      // const elements = document.querySelectorAll(".dark");
-      // elements.forEach(node => node.className = 'light');
     }
   };
 
