@@ -1,27 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 .list-item-dark-active {
-  background-color: #25273c;
+  background-color: #25273c !important;
   border-bottom: 2px solid #393a4c;
   color: #cacde8;
   text-decoration: initial;
 }
 
 .list-item-dark-complete {
-  background-color: #25273c;
+  background-color: #25273c !important;
   border-bottom: 2px solid #393a4c;
   color: #4d5066;
   text-decoration: line-through;
 }
 
 .list-item-light-active {
-  background-color: #fafafa;
+  background-color: #fafafa !important;
   border-bottom: 2px solid #d2d3db;
   color: #484b6a;
   text-decoration: initial;
 }
 
 .list-item-light-complete {
-  background-color: #fafafa;
+  background-color: #fafafa !important;
   border-bottom: 2px solid #d2d3db;
   color: #9394a5;
   text-decoration: line-through;

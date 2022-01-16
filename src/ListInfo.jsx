@@ -1,6 +1,15 @@
 import React from "react";
+import { PropTypes } from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
+import { selectColorMode } from "./features/colorMode/colorModeSlice";
+import { selectListItems } from "./features/listItems/listItemsSlice";
+import { changeFilter } from "./features/dataFilter/dataFilterSlice";
 
 export function ListInfo(props) {
+  const mode = useSelector(selectColorMode);
+  const listItems = useSelector(selectListItems);
+  const dispatch = useDispatch;
+
   const flashRed = (e) => {
     console.log(e);
     let element = e.target;
@@ -19,46 +28,46 @@ export function ListInfo(props) {
   };
 
   const handleItemsLeft = () => {
-    return props.data.filter((item) => !item.completed).length;
+    return listItems.filter((item) => !item.completed).length;
   };
 
   const getModeClass = () => {
-    return "list-option list-option-unselected-" + props.mode;
+    return "list-option list-option-unselected-" + mode;
   };
 
   const getClearButtonMode = () => {
-    return "clear-button-" + props.mode;
+    return "clear-button-" + mode;
   };
 
   return (
-    <div id="list-info" class="list-info-dark">
+    <div id="list-info" className="list-info-dark">
       <p>{handleItemsLeft()} items left</p>
       <div id="completion-status">
         <p
           id="list-all"
           className="list-option list-option-selected"
-          onClick={props.listChange}
+          onClick={() => dispatch(changeFilter("all"))}
         >
           All
         </p>
         <p
           id="list-active"
           className={getModeClass()}
-          onClick={props.listChange}
+          onClick={() => dispatch(changeFilter("active"))}
         >
           Active
         </p>
         <p
           id="list-completed"
           className={getModeClass()}
-          onClick={props.listChange}
+          onClick={() => dispatch(changeFilter("completed"))}
         >
           Completed
         </p>
       </div>
       <button
         id="clear-button"
-        class={getClearButtonMode()}
+        className={getClearButtonMode()}
         onClick={clickFunctions}
       >
         Clear Completed
@@ -66,3 +75,8 @@ export function ListInfo(props) {
     </div>
   );
 }
+
+ListInfo.propTypes = {
+  listChange: PropTypes.func,
+  clearCompleted: PropTypes.func,
+};

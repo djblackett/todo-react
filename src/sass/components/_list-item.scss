@@ -1,28 +1,28 @@
 @import "../helpers/variables";
 
 .list-item-dark-active {
-  background-color: $darkItem;
+  background-color: $darkItem !important;
   border-bottom: 2px solid $darkListItemBorder;
   color: $darkItemText1;
   text-decoration: initial;
 }
 
 .list-item-dark-complete {
-  background-color: $darkItem;
+  background-color: $darkItem !important;
   border-bottom: 2px solid $darkListItemBorder;
   color: $darkModeListColor;
   text-decoration: line-through;
 }
 
 .list-item-light-active {
-  background-color: $lightItemBackground;
+  background-color: $lightItemBackground !important;
   border-bottom: 2px solid $lightListItemBorder;
   color: $lightActiveText;
   text-decoration: initial;
 }
 
 .list-item-light-complete {
-  background-color: $lightItemBackground;
+  background-color: $lightItemBackground !important;
   border-bottom: 2px solid $lightListItemBorder;
   color: $lightListInfo;
   text-decoration: line-through;
