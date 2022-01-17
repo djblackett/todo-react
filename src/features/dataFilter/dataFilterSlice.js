@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const options = {
   name: "dataFilter",
-  initialState: "all",
+  initialState: {
+    filter: "all",
+  },
   reducers: {
-    changeFilter(state, action) {
-      state = action.payload;
+    changeFilter: (state, action) => {
+      state.filter = action.payload;
       return state;
     },
   },
@@ -14,8 +16,9 @@ const options = {
 const dataFilterSlice = createSlice(options);
 
 export const selectDataFilter = (state) => {
-  return state.dataFilter;
+  return state.dataFilter.filter;
 };
 
 export const { changeFilter } = dataFilterSlice.actions;
+
 export default dataFilterSlice.reducer;

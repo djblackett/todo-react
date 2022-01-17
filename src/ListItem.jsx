@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState, useEffect }from "react";
 import { PropTypes } from 'prop-types';
 import { ReactComponent as Check } from "./svg/icon-check.svg";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectColorMode } from "./features/colorMode/colorModeSlice";
+import { completeItem, removeListItem } from "./features/listItems/listItemsSlice";
 
 const crossIconD =
   "M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z";
@@ -11,9 +12,12 @@ export function ListItem(props) {
   // define styles in objects, then place in larger object to switch between light and dark mode
 
   const mode = useSelector(selectColorMode).colorMode;
+  const dispatch = useDispatch();
+  const [innerCircle, setInnerCircle] = useState("");
 
   const handleCheck = (e) => {
-    props.completeItem(props.index);
+    // props.completeItem(props.index);
+    dispatch(completeItem(props.index));
 
     let listItem = e.target.parentNode;
     let circle = e.target.querySelector("#circle");
@@ -24,7 +28,8 @@ export function ListItem(props) {
     let status = classArray[1];
     status = status === "circle-hidden" ? "circle-visible" : "circle-hidden";
 
-    circle.className = mode + " " + status;
+    // circle.className = mode + " " + status;
+    circle.setAttribute('class', "circle-" + mode + " " + status);
     let checkStatus =
       check.getAttribute("class") === "check-hidden"
         ? "check-visible"
@@ -32,6 +37,7 @@ export function ListItem(props) {
 
     check.setAttribute("class", checkStatus);
     console.log(checkStatus);
+    console.log(circle.className);
 
     if (listItem.className === "list-item-dark-active") {
       listItem.className = "list-item-dark-complete";
@@ -45,7 +51,8 @@ export function ListItem(props) {
   };
 
   const handleCrossClick = () => {
-    props.deleteItem(props.index);
+    dispatch(removeListItem(props.index));
+    // props.deleteItem(props.index);
   };
 
   // not the cleanest code :(
@@ -60,8 +67,9 @@ export function ListItem(props) {
   // the classes are recalculated after every change in props.mode or props.completed
   // then injected into the jsx inside the outer circle element
 
-  const innerCircle = () => {
+  useEffect(() => {
     if (mode === "dark") {
+      setInnerCircle(() => {
         return props.completed ? (
           <div id="circle" className="circle-dark circle-hidden">
             <Check id="check" className="check-visible" />
@@ -71,7 +79,9 @@ export function ListItem(props) {
             <Check id="check" className="check-hidden" />
           </div>
         );
+      })
     } else {
+      setInnerCircle(() => {
         return props.completed ? (
           <div id="circle" className="circle-light circle-hidden">
             <Check id="check" className="check-visible" />
@@ -81,8 +91,9 @@ export function ListItem(props) {
             <Check id="check" className="check-hidden" />
           </div>
         );
-    }
-  };
+      })
+    } 
+  }, []);
 
   const classMode = () => {
     let s = `list-item-${mode}-`;
@@ -93,7 +104,7 @@ export function ListItem(props) {
   return (
     <div id="list-item" className={classMode()}>
       <div id="outer-circle" onClick={handleCheck}>
-        {innerCircle()}
+        {innerCircle}
       </div>
       <p id="list-item-text" className="dark">
         {props.text}

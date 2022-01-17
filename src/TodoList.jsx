@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { ListInfo } from "./ListInfo";
 import { ListItem } from "./ListItem";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import {useSelector, useDispatch} from 'react-redux';
 import { selectDataFilter } from "./features/dataFilter/dataFilterSlice";
-import { selectListItems, reorderItems } from "./features/listItems/listItemsSlice";
+import { selectListItems, reorderItems, applyFilter, } from "./features/listItems/listItemsSlice";
+import { selectColorMode } from "./features/colorMode/colorModeSlice";
 
 
 //todo I think useEffect is redundant here. It is probably causing extra rerenders. If I put all data in redux store
@@ -13,39 +14,52 @@ import { selectListItems, reorderItems } from "./features/listItems/listItemsSli
 
 export function TodoList(props) {
   // const [dataFilter, setDataFilter] = useState("all");
-  // const [filteredData, setFilteredData] = useState(props.data);
+  const [filteredData, setFilteredData] = useState(props.data);
 
+  const mode = useSelector(selectColorMode);
   const listItems = useSelector(selectListItems);
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+
+ 
+
+  // const filteredListItems = useSelector(selectFilteredListItems);
   
   const dataFilter = useSelector(selectDataFilter);
 
-  console.log(dataFilter);
+  // console.log(dataFilter);
 
   const handleOnDragEnd = (result) => {
-    const items = Array.from(filteredData());
+    const items = Array.from(filteredData);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
     dispatch(reorderItems(items));
   };
 
-  const filteredData = () => {
+  useEffect(() => {
     if (dataFilter === "all") {
+      setFilteredData(() => {
         return listItems;
+      })
     } else if (dataFilter === "active") {
+      setFilteredData(() => {
         return listItems.filter((entry) => entry.completed === false);
+      })
     } else if (dataFilter === "completed") {
+      setFilteredData(() => {
         return listItems.filter((entry) => entry.completed === true);
-    } else {
+    })
+  } else {
       return [];
     }
-  };
+    console.log("useEffect called render()");
+  }, [dataFilter, listItems]);
 
-  console.log(filteredData());
+  //console.log(filteredData());
 
   const getModeClass = () => {
-    return "list-option list-option-unselected-" + props.mode;
+    return "list-option list-option-unselected-" + mode;
   };
 
   const handleListChange = (e) => {
@@ -58,18 +72,21 @@ const dispatch = useDispatch();
       element.setAttribute("class", "list-option list-option-selected");
       active.setAttribute("class", getModeClass());
       completed.setAttribute("class", getModeClass());
+      dispatch(applyFilter(listItems));
       // setDataFilter(() => "all");
       // dispatchAll();
     } else if (element === active) {
       element.setAttribute("class", "list-option list-option-selected");
       all.setAttribute("class", getModeClass());
       completed.setAttribute("class", getModeClass());
+      dispatch(applyFilter(listItems.filter((entry) => entry.completed === false)));
       // dispatchActive();
       // setDataFilter(() => "active");
     } else if (element === completed) {
       element.setAttribute("class", "list-option list-option-selected");
       active.setAttribute("class", getModeClass());
       all.setAttribute("class", getModeClass());
+      dispatch(applyFilter(listItems.filter((entry) => entry.completed === true)));
       // setDataFilter(() => "completed");
       // dispatchCompleted();
     }
@@ -85,12 +102,12 @@ const dispatch = useDispatch();
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {filteredData().map((item, i) => {
+              {filteredData.map((item, i) => {
                 return (
                   <Draggable
                     key={item.id}
                     index={i}
-                    draggableId={item.id}
+                    draggableId={String(item.id)}
                     id="inner-list-container"
                   >
                     {(provided) => (
@@ -106,7 +123,7 @@ const dispatch = useDispatch();
                           completeItem={props.completeItem}
                           listState={dataFilter}
                           deleteItem={props.deleteItem}
-                          mode={props.mode}
+                          
                         />
                       </li>
                     )}
@@ -119,10 +136,10 @@ const dispatch = useDispatch();
         </Droppable>
       </DragDropContext>
       <ListInfo
-        data={filteredData()}
+        data={filteredData}
         listChange={handleListChange}
         clearCompleted={props.clearCompleted}
-        mode={props.mode}
+        
       />
     </div>
   );
@@ -136,3 +153,6 @@ TodoList.propTypes = {
   deleteItem: PropTypes.func,
   mode: PropTypes.string,
 };
+// require("react-dom");
+// window.React2 = require("react");
+// console.log(window.React1 === window.React2);

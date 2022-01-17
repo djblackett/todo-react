@@ -8,7 +8,9 @@ import { changeFilter } from "./features/dataFilter/dataFilterSlice";
 export function ListInfo(props) {
   const mode = useSelector(selectColorMode);
   const listItems = useSelector(selectListItems);
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
+  // const allAction = changeFilter("all");
+  // const activeAction = changeFilter("active");
 
   const flashRed = (e) => {
     console.log(e);
@@ -22,13 +24,24 @@ export function ListInfo(props) {
     }, 200);
   };
 
+  const handleChangeFilter = (e) => {
+    console.log(e);
+    props.listChange(e);
+    console.log(e);
+    let filter = e.target.innerText.toLowerCase();
+    console.log(filter);
+    dispatch(changeFilter({ filter: filter }));
+  };
+
   const clickFunctions = (e) => {
     flashRed(e);
     props.clearCompleted();
   };
 
   const handleItemsLeft = () => {
-    return listItems.filter((item) => !item.completed).length;
+    if (listItems) {
+      return listItems.filter((item) => !item.completed).length;
+    }
   };
 
   const getModeClass = () => {
@@ -46,21 +59,21 @@ export function ListInfo(props) {
         <p
           id="list-all"
           className="list-option list-option-selected"
-          onClick={() => dispatch(changeFilter("all"))}
+          onClick={handleChangeFilter}
         >
           All
         </p>
         <p
           id="list-active"
           className={getModeClass()}
-          onClick={() => dispatch(changeFilter("active"))}
+          onClick={handleChangeFilter}
         >
           Active
         </p>
         <p
           id="list-completed"
           className={getModeClass()}
-          onClick={() => dispatch(changeFilter("completed"))}
+          onClick={handleChangeFilter}
         >
           Completed
         </p>

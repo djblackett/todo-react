@@ -34,11 +34,38 @@ const options = {
       return state;
     },
     removeListItem(state, action) {
-      return state.filter((product) => product.id !== action.payload.id);
+      // console.log(current.state);
+      // console.log(state);
+      // const newList = [...state.listItems];
+      state.listItems = state.listItems.filter(
+        (item) => item.id !== String(action.payload)
+      );
+
+      if (
+        state.filteredListItems.filter(
+          (item) => item.id === String(action.payload)
+        ).length > 0
+      ) {
+        state.filteredListItems = state.filteredListItems.filter(
+          (item) => item.id !== String(action.payload)
+        );
+      }
+
+      // return newList;
     },
     reorderItems(state, action) {
       state.listItems = action.payload;
       return state;
+    },
+    applyFilter(state, action) {
+      state.listItems = action.payload;
+    },
+    completeItem(state, action) {
+      let listItem = state.listItems.filter(
+        (item) => item.id === String(action.payload)
+      )[0];
+      console.log(listItem);
+      listItem.completed = !listItem.completed;
     },
   },
 };
@@ -57,7 +84,12 @@ export function selectFilteredListItems(state) {
 //   return state.listItems.filter((product) => product.id === 0);
 // }
 
-export const { addListItem, removeListItem, reorderItems } =
-  listItemsSlice.actions;
+export const {
+  addListItem,
+  removeListItem,
+  reorderItems,
+  applyFilter,
+  completeItem,
+} = listItemsSlice.actions;
 
 export default listItemsSlice.reducer;

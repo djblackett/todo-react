@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addListItem } from "./features/listItems/listItemsSlice";
 
 export function InputBar() {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {

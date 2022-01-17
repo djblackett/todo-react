@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectColorMode } from "./features/colorMode/colorModeSlice";
 import { toggleColorMode } from "./features/colorMode/colorModeSlice";
 
-
 const initialData = [
   { id: "1234", text: "Welcome to your new todo list", completed: false },
   { id: "1235", text: "Tap the sun to switch to light mode", completed: false },
@@ -171,3 +170,6 @@ function App() {
 }
 
 export default App;
+require("react-dom");
+window.React2 = require("react");
+console.log(window.React1 === window.React2);
