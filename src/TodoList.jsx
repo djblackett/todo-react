@@ -67,7 +67,7 @@ export function TodoList() {
     }
   }, [listItems, dataFilter]);
 
-  
+
   const handleListChange = (e) => {
     // Handles the style changes based on the selection in the info pane
     // Can likely be refactored to embed the dataFilter directly into the ListInfo's JSX elements
@@ -148,4 +148,3 @@ export function TodoList() {
     </div>
   );
 }
-

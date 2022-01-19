@@ -15,23 +15,11 @@ function App() {
   const image = useSelector(selectImage);
   const dispatch = useDispatch();
 
-  // Some of this can be removed with inline styling in JSX
   function handleLogoChange() {
-    let html = document.querySelector("body");
-    let listItems = document.querySelectorAll("#list-item");
-
     dispatch(toggleColorMode());
-
+    let html = document.querySelector("body");
     html.style.backgroundColor =
-      mode === "light" ? "hsl(235, 21%, 11%)" : "hsl(236, 33%, 92%)";
-
-    listItems.forEach((node) => {
-      let beginning = "list-item-";
-      let classPieces = node.className.split("-");
-      let end = classPieces[3];
-
-      node.setAttribute("class", beginning + `${mode}-` + end);
-    });
+      mode === "light" ? "hsl(235, 21%, 11%)" : "hsl(236, 33%, 92%)"; // dark or light background color
   }
 
   return (
