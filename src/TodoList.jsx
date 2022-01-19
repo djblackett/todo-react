@@ -28,7 +28,10 @@ export function TodoList() {
     });
   };
 
-  // Modified this guy's code: https://dev.to/joelynn/how-to-build-a-react-crud-todo-app-localstorage-4pjh
+
+  // Modified this guy's code for local storage:
+  // https://dev.to/joelynn/how-to-build-a-react-crud-todo-app-localstorage-4pjh
+  
   // useEffect to run once the component mounts
   useEffect(() => {
     // localstorage only support storing strings as keys and values
@@ -40,7 +43,10 @@ export function TodoList() {
     // localstorage anytime the todos state changes
   }, [listItems]);
 
+
+
   useEffect(() => {
+    // Every time the list or filter changes, the list gets refiltered to match the new filter/list
     if (dataFilter === "all") {
       setFilteredData(() => {
         return listItems;
@@ -61,13 +67,11 @@ export function TodoList() {
     }
   }, [listItems, dataFilter]);
 
-
-
-  const getModeClass = () => {
-    return "list-option list-option-unselected-" + mode;
-  };
-
+  
   const handleListChange = (e) => {
+    // Handles the style changes based on the selection in the info pane
+    // Can likely be refactored to embed the dataFilter directly into the ListInfo's JSX elements
+
     let element = e.target;
     let all = document.getElementById("list-all");
     let active = document.getElementById("list-active");
@@ -75,36 +79,32 @@ export function TodoList() {
 
     if (element === all) {
       element.setAttribute("class", "list-option list-option-selected");
-      active.setAttribute("class", getModeClass());
-      completed.setAttribute("class", getModeClass());
+      active.setAttribute("class", `list-option list-option-unselected-${mode}`);
+      completed.setAttribute("class", `list-option list-option-unselected-${mode}`);
       setDataFilter(() => {
         return "all";
       });
-      // dispatch(applyFilter(listItems));
       
     } else if (element === active) {
       element.setAttribute("class", "list-option list-option-selected");
-      all.setAttribute("class", getModeClass());
-      completed.setAttribute("class", getModeClass());
+      all.setAttribute("class", `list-option list-option-unselected-${mode}`);
+      completed.setAttribute("class", `list-option list-option-unselected-${mode}`);
       setDataFilter(() => {
         return "active";
       });
-      // dispatch(applyFilter(listItems.filter((entry) => entry.completed === false)));
       
     } else if (element === completed) {
       element.setAttribute("class", "list-option list-option-selected");
-      active.setAttribute("class", getModeClass());
-      all.setAttribute("class", getModeClass());
+      active.setAttribute("class", `list-option list-option-unselected-${mode}`);
+      all.setAttribute("class", `list-option list-option-unselected-${mode}`);
       setDataFilter(() => {
         return "completed";
       });
-      // dispatch(applyFilter(listItems.filter((entry) => entry.completed))); 
-   
     }
   };
 
   return (
-    <div id="todo-list-container">
+    <div id="todo-list-container" className={`todo-list-container-${mode}`}>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
           {(provided) => (
@@ -131,7 +131,6 @@ export function TodoList() {
                           text={item.text}
                           index={Number(item.id)}
                           completed={item.completed}
-                          listState={dataFilter}
                         />
                       </li>
                     )}
@@ -144,7 +143,6 @@ export function TodoList() {
         </Droppable>
       </DragDropContext>
       <ListInfo
-        filteredData={filteredData}
         listChange={handleListChange}
       />
     </div>

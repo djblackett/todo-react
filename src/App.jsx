@@ -15,15 +15,13 @@ function App() {
   const image = useSelector(selectImage);
   const dispatch = useDispatch();
 
+  // Some of this can be removed with inline styling in JSX
   function handleLogoChange() {
-    let circles = document.querySelectorAll("#circle");
     let html = document.querySelector("body");
     let listItems = document.querySelectorAll("#list-item");
-    let listContainer = document.querySelector("#todo-list-container");
 
     dispatch(toggleColorMode());
 
-    circles.forEach((node) => (node.className = `circle-${mode}`));
     html.style.backgroundColor =
       mode === "light" ? "hsl(235, 21%, 11%)" : "hsl(236, 33%, 92%)";
 
@@ -34,8 +32,6 @@ function App() {
 
       node.setAttribute("class", beginning + `${mode}-` + end);
     });
-
-    listContainer.className = `todo-list-container-${mode}`;
   }
 
   return (

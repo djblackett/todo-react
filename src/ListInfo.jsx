@@ -6,19 +6,21 @@ import {
   selectListItems,
   clearCompletedItems,
 } from "./features/listItems/listItemsSlice";
-import { changeFilter } from "./features/dataFilter/dataFilterSlice";
+import {
+  changeFilter,
+  // selectDataFilter,
+} from "./features/dataFilter/dataFilterSlice";
 
 export function ListInfo(props) {
+
   const mode = useSelector(selectColorMode);
+  // const dataFilter = useSelector(selectDataFilter);
   const listItems = useSelector(selectListItems);
   const dispatch = useDispatch();
 
   const flashRed = (e) => {
-    console.log(e);
     let element = e.target;
-
-    console.log(element);
-    let currentColor = String(element.style.color);
+    let currentColor = element.style.color;
     element.style.color = "red";
     setTimeout(() => {
       element.style.color = currentColor;
@@ -43,14 +45,6 @@ export function ListInfo(props) {
     }
   };
 
-  const getModeClass = () => {
-    return "list-option list-option-unselected-" + mode;
-  };
-
-  const getClearButtonMode = () => {
-    return "clear-button-" + mode;
-  };
-
   return (
     <div id="list-info" className={`list-info-${mode}`}>
       <p>{handleItemsLeft()} items left</p>
@@ -64,14 +58,14 @@ export function ListInfo(props) {
         </p>
         <p
           id="list-active"
-          className={getModeClass()}
+          className={`list-option list-option-unselected-${mode}`}
           onClick={handleChangeFilter}
         >
           Active
         </p>
         <p
           id="list-completed"
-          className={getModeClass()}
+          className={`list-option list-option-unselected-${mode}`}
           onClick={handleChangeFilter}
         >
           Completed
@@ -79,7 +73,7 @@ export function ListInfo(props) {
       </div>
       <button
         id="clear-button"
-        className={getClearButtonMode()}
+        className={`clear-button-${mode}`}
         onClick={clickFunctions}
       >
         Clear Completed
@@ -90,6 +84,4 @@ export function ListInfo(props) {
 
 ListInfo.propTypes = {
   listChange: PropTypes.func,
-  clearCompleted: PropTypes.func,
-  filteredData: PropTypes.array,
 };

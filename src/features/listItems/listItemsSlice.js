@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let uniqueId = 0;
 
-//todo applyFilter currently just updates to the same value. change payload in TodoList.jsx
-
 const initialData = [
   { id: "1234", text: "Welcome to your new todo list", completed: false },
   {
@@ -60,8 +58,6 @@ const options = {
       let listItem = state.listItems.find(
         (item) => item.id === String(action.payload)
       );
-      console.log(JSON.stringify(listItem));
-      console.log(JSON.stringify(state.listItems));
       listItem.completed = !listItem.completed;
     },
     clearCompletedItems(state) {
