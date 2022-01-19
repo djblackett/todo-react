@@ -150,4 +150,24 @@ body {
   .attribution {
     color: $darkModeListColor;
   }
+
+  .reset-dark {
+    color: $darkModeListColor;
+    background-color: $darkItem;
+  }
+
+  .reset-light {
+    color: $lightListInfo;
+    background-color: $lightItemBackground;
+  }
+
+  #reset {
+    border-radius: 16px;
+    margin: 25px;
+    padding: 10px;
+    border: none;
+    // filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 1));
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
 }

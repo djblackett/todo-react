@@ -1,9 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectColorMode } from "./features/colorMode/colorModeSlice";
 import { addListItem } from "./features/listItems/listItemsSlice";
 
 export function InputBar() {
   const dispatch = useDispatch();
+  let mode = useSelector(selectColorMode);
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
@@ -19,13 +21,13 @@ export function InputBar() {
   };
 
   return (
-    <div id="input-component" className="input-component-dark dark">
+    <div id="input-component" className={`input-component-${mode}`}>
       <div id="outer-circle">
-        <div id="circle" className="circle-dark"></div>
+        <div id="circle" className={`circle-${mode}`}></div>
       </div>
       <input
         id="input"
-        className="input-dark dark"
+        className={`input-${mode}`}
         type="text"
         placeholder="Create a new todo..."
         onKeyDown={(e) => handleEnterPress(e)}

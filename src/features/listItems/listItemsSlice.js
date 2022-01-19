@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 let uniqueId = 0;
+
+//todo applyFilter currently just updates to the same value. change payload in TodoList.jsx
+
 const initialData = [
   { id: "1234", text: "Welcome to your new todo list", completed: false },
   {
@@ -13,59 +16,59 @@ const initialData = [
     text: "Tap the circles to mark items completed",
     completed: false,
   },
-  {
-    id: "1236",
-    text: "Careful now. Refreshing the page will reset the list... ",
-    completed: false,
-  },
 ];
+
+const initializeData = () => {
+  // get the todos from localstorage
+  const savedTodos = localStorage.getItem("todos");
+  // if there are todos stored
+  if (savedTodos && savedTodos !== "[]") {
+    // return the parsed JSON object back to a javascript object
+    return JSON.parse(savedTodos);
+    // otherwise
+  } else {
+    // return an empty array
+    return initialData;
+  }
+};
+
 const options = {
   name: "listItems",
   initialState: {
-    listItems: initialData,
-    filteredListItems: initialData,
+    listItems: initializeData(),
   },
   reducers: {
     addListItem(state, action) {
       state.listItems.push({
-        id: uniqueId++,
+        id: String(uniqueId++),
         ...action.payload,
       });
-      return state;
     },
     removeListItem(state, action) {
-      // console.log(current.state);
-      // console.log(state);
-      // const newList = [...state.listItems];
       state.listItems = state.listItems.filter(
         (item) => item.id !== String(action.payload)
       );
-
-      if (
-        state.filteredListItems.filter(
-          (item) => item.id === String(action.payload)
-        ).length > 0
-      ) {
-        state.filteredListItems = state.filteredListItems.filter(
-          (item) => item.id !== String(action.payload)
-        );
-      }
-
-      // return newList;
     },
     reorderItems(state, action) {
       state.listItems = action.payload;
       return state;
     },
     applyFilter(state, action) {
-      state.listItems = action.payload;
+      state.filteredListItems = action.payload;
     },
     completeItem(state, action) {
-      let listItem = state.listItems.filter(
+      let listItem = state.listItems.find(
         (item) => item.id === String(action.payload)
-      )[0];
-      console.log(listItem);
+      );
+      console.log(JSON.stringify(listItem));
+      console.log(JSON.stringify(state.listItems));
       listItem.completed = !listItem.completed;
+    },
+    clearCompletedItems(state) {
+      state.listItems = state.listItems.filter((item) => !item.completed);
+    },
+    resetList(state) {
+      state.listItems = initialData;
     },
   },
 };
@@ -76,20 +79,14 @@ export function selectListItems(state) {
   return state.listItems.listItems;
 }
 
-export function selectFilteredListItems(state) {
-  return state.listItems.filteredListItems;
-}
-
-// export function selectDefaultProduct(state) {
-//   return state.listItems.filter((product) => product.id === 0);
-// }
-
 export const {
   addListItem,
   removeListItem,
   reorderItems,
   applyFilter,
   completeItem,
+  clearCompletedItems,
+  resetList,
 } = listItemsSlice.actions;
 
 export default listItemsSlice.reducer;

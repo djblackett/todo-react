@@ -1,62 +1,67 @@
 import React, { useState, useEffect } from "react";
-import { PropTypes } from "prop-types";
 import { ListInfo } from "./ListInfo";
 import { ListItem } from "./ListItem";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import {useSelector, useDispatch} from 'react-redux';
 import { selectDataFilter } from "./features/dataFilter/dataFilterSlice";
-import { selectListItems, reorderItems, applyFilter, } from "./features/listItems/listItemsSlice";
+import { selectListItems, reorderItems } from "./features/listItems/listItemsSlice";
 import { selectColorMode } from "./features/colorMode/colorModeSlice";
 
 
-//todo I think useEffect is redundant here. It is probably causing extra rerenders. If I put all data in redux store
-//todo and have a 2nd object of filtered data which gets rendered, I won't need to check with useEffect anymore 
-
-export function TodoList(props) {
-  // const [dataFilter, setDataFilter] = useState("all");
-  const [filteredData, setFilteredData] = useState(props.data);
-
+export function TodoList() {
+  
   const mode = useSelector(selectColorMode);
   const listItems = useSelector(selectListItems);
   const dispatch = useDispatch();
-
-
- 
-
-  // const filteredListItems = useSelector(selectFilteredListItems);
+  const dataFilterStore = useSelector(selectDataFilter);
+  const [filteredData, setFilteredData] = useState(listItems);
+  const [dataFilter, setDataFilter] = useState(dataFilterStore);
   
-  const dataFilter = useSelector(selectDataFilter);
-
-  // console.log(dataFilter);
-
+  
   const handleOnDragEnd = (result) => {
     const items = Array.from(filteredData);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-
     dispatch(reorderItems(items));
+    setFilteredData(() => {
+      return items;
+    });
   };
+
+  // Modified this guy's code: https://dev.to/joelynn/how-to-build-a-react-crud-todo-app-localstorage-4pjh
+  // useEffect to run once the component mounts
+  useEffect(() => {
+    // localstorage only support storing strings as keys and values
+    // - therefore we cannot store arrays and objects without converting the object
+    // into a string first. JSON.stringify will convert the object into a JSON string
+    // reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+    localStorage.setItem("todos", JSON.stringify(listItems));
+    // add the todos as a dependancy because we want to update the
+    // localstorage anytime the todos state changes
+  }, [listItems]);
 
   useEffect(() => {
     if (dataFilter === "all") {
       setFilteredData(() => {
         return listItems;
-      })
+      });
+      
     } else if (dataFilter === "active") {
       setFilteredData(() => {
         return listItems.filter((entry) => entry.completed === false);
-      })
+      });
+      
     } else if (dataFilter === "completed") {
       setFilteredData(() => {
         return listItems.filter((entry) => entry.completed === true);
     })
+    
   } else {
       return [];
     }
-    console.log("useEffect called render()");
-  }, [dataFilter, listItems]);
+  }, [listItems, dataFilter]);
 
-  //console.log(filteredData());
+
 
   const getModeClass = () => {
     return "list-option list-option-unselected-" + mode;
@@ -72,23 +77,29 @@ export function TodoList(props) {
       element.setAttribute("class", "list-option list-option-selected");
       active.setAttribute("class", getModeClass());
       completed.setAttribute("class", getModeClass());
-      dispatch(applyFilter(listItems));
-      // setDataFilter(() => "all");
-      // dispatchAll();
+      setDataFilter(() => {
+        return "all";
+      });
+      // dispatch(applyFilter(listItems));
+      
     } else if (element === active) {
       element.setAttribute("class", "list-option list-option-selected");
       all.setAttribute("class", getModeClass());
       completed.setAttribute("class", getModeClass());
-      dispatch(applyFilter(listItems.filter((entry) => entry.completed === false)));
-      // dispatchActive();
-      // setDataFilter(() => "active");
+      setDataFilter(() => {
+        return "active";
+      });
+      // dispatch(applyFilter(listItems.filter((entry) => entry.completed === false)));
+      
     } else if (element === completed) {
       element.setAttribute("class", "list-option list-option-selected");
       active.setAttribute("class", getModeClass());
       all.setAttribute("class", getModeClass());
-      dispatch(applyFilter(listItems.filter((entry) => entry.completed === true)));
-      // setDataFilter(() => "completed");
-      // dispatchCompleted();
+      setDataFilter(() => {
+        return "completed";
+      });
+      // dispatch(applyFilter(listItems.filter((entry) => entry.completed))); 
+   
     }
   };
 
@@ -120,10 +131,7 @@ export function TodoList(props) {
                           text={item.text}
                           index={Number(item.id)}
                           completed={item.completed}
-                          completeItem={props.completeItem}
                           listState={dataFilter}
-                          deleteItem={props.deleteItem}
-                          
                         />
                       </li>
                     )}
@@ -136,23 +144,10 @@ export function TodoList(props) {
         </Droppable>
       </DragDropContext>
       <ListInfo
-        data={filteredData}
+        filteredData={filteredData}
         listChange={handleListChange}
-        clearCompleted={props.clearCompleted}
-        
       />
     </div>
   );
 }
 
-TodoList.propTypes = {
-  data: PropTypes.array,
-  reorderData: PropTypes.func,
-  completeItem: PropTypes.func,
-  clearCompleted: PropTypes.func,
-  deleteItem: PropTypes.func,
-  mode: PropTypes.string,
-};
-// require("react-dom");
-// window.React2 = require("react");
-// console.log(window.React1 === window.React2);

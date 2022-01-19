@@ -2,15 +2,16 @@ import React from "react";
 import { PropTypes } from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { selectColorMode } from "./features/colorMode/colorModeSlice";
-import { selectListItems } from "./features/listItems/listItemsSlice";
+import {
+  selectListItems,
+  clearCompletedItems,
+} from "./features/listItems/listItemsSlice";
 import { changeFilter } from "./features/dataFilter/dataFilterSlice";
 
 export function ListInfo(props) {
   const mode = useSelector(selectColorMode);
   const listItems = useSelector(selectListItems);
   const dispatch = useDispatch();
-  // const allAction = changeFilter("all");
-  // const activeAction = changeFilter("active");
 
   const flashRed = (e) => {
     console.log(e);
@@ -24,18 +25,16 @@ export function ListInfo(props) {
     }, 200);
   };
 
-  const handleChangeFilter = (e) => {
-    console.log(e);
-    props.listChange(e);
+  function handleChangeFilter(e) {
     console.log(e);
     let filter = e.target.innerText.toLowerCase();
-    console.log(filter);
     dispatch(changeFilter({ filter: filter }));
-  };
+    props.listChange(e);
+  }
 
   const clickFunctions = (e) => {
     flashRed(e);
-    props.clearCompleted();
+    dispatch(clearCompletedItems());
   };
 
   const handleItemsLeft = () => {
@@ -53,7 +52,7 @@ export function ListInfo(props) {
   };
 
   return (
-    <div id="list-info" className="list-info-dark">
+    <div id="list-info" className={`list-info-${mode}`}>
       <p>{handleItemsLeft()} items left</p>
       <div id="completion-status">
         <p
@@ -92,4 +91,5 @@ export function ListInfo(props) {
 ListInfo.propTypes = {
   listChange: PropTypes.func,
   clearCompleted: PropTypes.func,
+  filteredData: PropTypes.array,
 };

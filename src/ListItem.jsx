@@ -11,7 +11,7 @@ const crossIconD =
 export function ListItem(props) {
   // define styles in objects, then place in larger object to switch between light and dark mode
 
-  const mode = useSelector(selectColorMode).colorMode;
+  const mode = useSelector(selectColorMode);
   const dispatch = useDispatch();
   const [innerCircle, setInnerCircle] = useState("");
 
@@ -93,7 +93,7 @@ export function ListItem(props) {
         );
       })
     } 
-  }, []);
+  }, [mode, props.completed]);
 
   const classMode = () => {
     let s = `list-item-${mode}-`;
