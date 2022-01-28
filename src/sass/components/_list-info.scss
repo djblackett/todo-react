@@ -31,6 +31,10 @@
       rgba(0, 0, 0, 0.23) 0px 6px 6px;
   }
 
+  @media (max-width: 400px) {
+    font-size: 12px;
+  }
+
   #completion-status {
     display: flex;
     justify-content: space-between;
@@ -80,7 +84,6 @@
     border: none;
     outline: none;
     background-color: transparent;
-    // font-size: 18px;
     font-family: "Josefin Sans", sans-serif;
     &:hover {
       cursor: pointer;

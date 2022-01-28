@@ -1,7 +1,7 @@
 import "./sass/App.scss";
 import { TodoList } from "./TodoList";
 import { InputBar } from "./InputBar";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectColorMode,
@@ -14,6 +14,12 @@ function App() {
   const mode = useSelector(selectColorMode);
   const image = useSelector(selectImage);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    let html = document.querySelector("body");
+    html.style.backgroundColor =
+      mode === "light" ? "hsl(236, 33%, 92%)" : "hsl(235, 21%, 11%)";
+  }, [mode]);
 
   function handleLogoChange() {
     dispatch(toggleColorMode());
