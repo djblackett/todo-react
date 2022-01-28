@@ -1,28 +1,28 @@
 @import "../helpers/variables";
 
 .list-item-dark-active {
-  background-color: $darkItem;
+  background-color: $darkItem !important;
   border-bottom: 2px solid $darkListItemBorder;
   color: $darkItemText1;
   text-decoration: initial;
 }
 
 .list-item-dark-complete {
-  background-color: $darkItem;
+  background-color: $darkItem !important;
   border-bottom: 2px solid $darkListItemBorder;
   color: $darkModeListColor;
   text-decoration: line-through;
 }
 
 .list-item-light-active {
-  background-color: $lightItemBackground;
+  background-color: $lightItemBackground !important;
   border-bottom: 2px solid $lightListItemBorder;
   color: $lightActiveText;
   text-decoration: initial;
 }
 
 .list-item-light-complete {
-  background-color: $lightItemBackground;
+  background-color: $lightItemBackground !important;
   border-bottom: 2px solid $lightListItemBorder;
   color: $lightListInfo;
   text-decoration: line-through;
@@ -62,7 +62,6 @@
     z-index: 5;
 
     #circle {
-      // position: absolute;
       justify-content: center;
       align-items: center;
       height: calc($circleDiameter - 1px);
@@ -71,7 +70,6 @@
       justify-content: center;
       align-items: center;
 
-      // margin: 15px;
       border-radius: 50%;
       z-index: 6;
       pointer-events: none;
@@ -94,7 +92,6 @@
     }
   }
   #list-item-text {
-    // padding-left: 10px;
     width: 80%;
 
     @media (max-width: 700px) {

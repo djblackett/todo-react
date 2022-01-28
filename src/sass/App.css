@@ -1,27 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 .list-item-dark-active {
-  background-color: #25273c;
+  background-color: #25273c !important;
   border-bottom: 2px solid #393a4c;
   color: #cacde8;
   text-decoration: initial;
 }
 
 .list-item-dark-complete {
-  background-color: #25273c;
+  background-color: #25273c !important;
   border-bottom: 2px solid #393a4c;
   color: #4d5066;
   text-decoration: line-through;
 }
 
 .list-item-light-active {
-  background-color: #fafafa;
+  background-color: #fafafa !important;
   border-bottom: 2px solid #d2d3db;
   color: #484b6a;
   text-decoration: initial;
 }
 
 .list-item-light-complete {
-  background-color: #fafafa;
+  background-color: #fafafa !important;
   border-bottom: 2px solid #d2d3db;
   color: #9394a5;
   text-decoration: line-through;
@@ -143,13 +143,11 @@
       -ms-flex-align: center;
           align-items: center;
   z-index: 1;
-  height: 52px;
+  height: 45px;
   width: calc(50% + 20px);
   margin-bottom: 20px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
           box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-  -webkit-transition: color 500ms ease-in-out;
-  transition: color 500ms ease-in-out;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -203,7 +201,7 @@
 }
 
 #input-component #input {
-  height: 50px;
+  height: 45px;
   width: 90%;
   font-size: 1rem;
   outline: none;
@@ -456,8 +454,6 @@ body .App #todo-list-container {
   z-index: 0;
   width: calc(50% + 20px);
   border-radius: 5px;
-  -webkit-transition: height 1s ease-in-out;
-  transition: height 1s ease-in-out;
   overflow: hidden;
   -webkit-box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
           box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -487,21 +483,40 @@ body .App #todo-list-container .characters {
     -webkit-box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
             box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   }
+  body .App #todo-list-container .characters li:last-of-type #list-item {
+    border-bottom: none;
+  }
 }
 
 body .App #todo-list-container .characters li {
   width: 100%;
 }
 
-body .App #todo-list-container .characters li:last-of-type #list-item {
-  border-bottom: none;
-}
-
 body .App .drag {
   text-align: center;
+  color: #4d5066;
 }
 
 body .attribution {
   color: #4d5066;
+}
+
+body .reset-dark {
+  color: #4d5066;
+  background-color: #25273c;
+}
+
+body .reset-light {
+  color: #9394a5;
+  background-color: #fafafa;
+}
+
+body #reset {
+  border-radius: 16px;
+  margin: 25px;
+  padding: 10px;
+  border: none;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+          box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 /*# sourceMappingURL=App.css.map */
