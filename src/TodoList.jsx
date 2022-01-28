@@ -2,22 +2,22 @@ import React, { useState, useEffect } from "react";
 import { ListInfo } from "./ListInfo";
 import { ListItem } from "./ListItem";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { selectDataFilter } from "./features/dataFilter/dataFilterSlice";
-import { selectListItems, reorderItems } from "./features/listItems/listItemsSlice";
+import {
+  selectListItems,
+  reorderItems,
+} from "./features/listItems/listItemsSlice";
 import { selectColorMode } from "./features/colorMode/colorModeSlice";
 
-
 export function TodoList() {
-  
   const mode = useSelector(selectColorMode);
   const listItems = useSelector(selectListItems);
   const dispatch = useDispatch();
   const dataFilterStore = useSelector(selectDataFilter);
   const [filteredData, setFilteredData] = useState(listItems);
   const [dataFilter, setDataFilter] = useState(dataFilterStore);
-  
-  
+
   const handleOnDragEnd = (result) => {
     const items = Array.from(filteredData);
     const [reorderedItem] = items.splice(result.source.index, 1);
@@ -28,10 +28,9 @@ export function TodoList() {
     });
   };
 
-
   // Modified this guy's code for local storage:
   // https://dev.to/joelynn/how-to-build-a-react-crud-todo-app-localstorage-4pjh
-  
+
   // useEffect to run once the component mounts
   useEffect(() => {
     // localstorage only support storing strings as keys and values
@@ -39,11 +38,10 @@ export function TodoList() {
     // into a string first. JSON.stringify will convert the object into a JSON string
     // reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
     localStorage.setItem("todos", JSON.stringify(listItems));
+    localStorage.setItem("mode", JSON.stringify({ colorMode: mode }));
     // add the todos as a dependancy because we want to update the
     // localstorage anytime the todos state changes
-  }, [listItems]);
-
-
+  }, [listItems, mode]);
 
   useEffect(() => {
     // Every time the list or filter changes, the list gets refiltered to match the new filter/list
@@ -51,22 +49,18 @@ export function TodoList() {
       setFilteredData(() => {
         return listItems;
       });
-      
     } else if (dataFilter === "active") {
       setFilteredData(() => {
         return listItems.filter((entry) => entry.completed === false);
       });
-      
     } else if (dataFilter === "completed") {
       setFilteredData(() => {
         return listItems.filter((entry) => entry.completed === true);
-    })
-    
-  } else {
+      });
+    } else {
       return [];
     }
   }, [listItems, dataFilter]);
-
 
   const handleListChange = (e) => {
     // Handles the style changes based on the selection in the info pane
@@ -79,23 +73,33 @@ export function TodoList() {
 
     if (element === all) {
       element.setAttribute("class", "list-option list-option-selected");
-      active.setAttribute("class", `list-option list-option-unselected-${mode}`);
-      completed.setAttribute("class", `list-option list-option-unselected-${mode}`);
+      active.setAttribute(
+        "class",
+        `list-option list-option-unselected-${mode}`
+      );
+      completed.setAttribute(
+        "class",
+        `list-option list-option-unselected-${mode}`
+      );
       setDataFilter(() => {
         return "all";
       });
-      
     } else if (element === active) {
       element.setAttribute("class", "list-option list-option-selected");
       all.setAttribute("class", `list-option list-option-unselected-${mode}`);
-      completed.setAttribute("class", `list-option list-option-unselected-${mode}`);
+      completed.setAttribute(
+        "class",
+        `list-option list-option-unselected-${mode}`
+      );
       setDataFilter(() => {
         return "active";
       });
-      
     } else if (element === completed) {
       element.setAttribute("class", "list-option list-option-selected");
-      active.setAttribute("class", `list-option list-option-unselected-${mode}`);
+      active.setAttribute(
+        "class",
+        `list-option list-option-unselected-${mode}`
+      );
       all.setAttribute("class", `list-option list-option-unselected-${mode}`);
       setDataFilter(() => {
         return "completed";
@@ -142,9 +146,7 @@ export function TodoList() {
           )}
         </Droppable>
       </DragDropContext>
-      <ListInfo
-        listChange={handleListChange}
-      />
+      <ListInfo listChange={handleListChange} />
     </div>
   );
 }
