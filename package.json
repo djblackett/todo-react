@@ -50,5 +50,6 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-react-redux": "^3.3.4"
   },
+
   "homepage": "https://djblackett.github.io/todo-react",
 }
