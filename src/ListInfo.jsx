@@ -11,8 +11,7 @@ import {
   // selectDataFilter,
 } from "./features/dataFilter/dataFilterSlice";
 
-export function ListInfo(props) {
-
+function ListInfo(props) {
   const mode = useSelector(selectColorMode);
   // const dataFilter = useSelector(selectDataFilter);
   const listItems = useSelector(selectListItems);
@@ -46,32 +45,40 @@ export function ListInfo(props) {
   };
 
   return (
-    <div id="list-info" className={`list-info-${mode}`}>
+    <div
+      id="list-info"
+      className={`list-info-${mode}`}
+      data-testid="list-info-component-test"
+    >
       <p>{handleItemsLeft()} items left</p>
       <div id="completion-status">
-        <p
+        <button
+          tabIndex={0}
           id="list-all"
           className="list-option list-option-selected"
           onClick={handleChangeFilter}
         >
           All
-        </p>
-        <p
+        </button>
+        <button
+          tabIndex={0}
           id="list-active"
           className={`list-option list-option-unselected-${mode}`}
           onClick={handleChangeFilter}
         >
           Active
-        </p>
-        <p
+        </button>
+        <button
+          tabIndex={0}
           id="list-completed"
           className={`list-option list-option-unselected-${mode}`}
           onClick={handleChangeFilter}
         >
           Completed
-        </p>
+        </button>
       </div>
       <button
+        tabIndex={0}
         id="clear-button"
         className={`clear-button-${mode}`}
         onClick={clickFunctions}
@@ -85,3 +92,5 @@ export function ListInfo(props) {
 ListInfo.propTypes = {
   listChange: PropTypes.func,
 };
+
+export default ListInfo;

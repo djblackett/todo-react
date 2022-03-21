@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectColorMode } from "./features/colorMode/colorModeSlice";
 import { addListItem } from "./features/listItems/listItemsSlice";
 
-export function InputBar() {
+function InputBar() {
   const dispatch = useDispatch();
   let mode = useSelector(selectColorMode);
 
@@ -21,7 +21,11 @@ export function InputBar() {
   };
 
   return (
-    <div id="input-component" className={`input-component-${mode}`}>
+    <div
+      id="input-component"
+      className={`input-component-${mode}`}
+      tabIndex={-1}
+    >
       <div id="outer-circle">
         <div id="circle" className={`circle-${mode}`}></div>
       </div>
@@ -35,3 +39,5 @@ export function InputBar() {
     </div>
   );
 }
+
+export default InputBar;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ListInfo } from "./ListInfo";
-import { ListItem } from "./ListItem";
+import ListInfo from "./ListInfo";
+import ListItem from "./ListItem";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useSelector, useDispatch } from "react-redux";
 import { selectDataFilter } from "./features/dataFilter/dataFilterSlice";
@@ -10,7 +10,7 @@ import {
 } from "./features/listItems/listItemsSlice";
 import { selectColorMode } from "./features/colorMode/colorModeSlice";
 
-export function TodoList() {
+function TodoList() {
   const mode = useSelector(selectColorMode);
   const listItems = useSelector(selectListItems);
   const dispatch = useDispatch();
@@ -150,3 +150,5 @@ export function TodoList() {
     </div>
   );
 }
+
+export default TodoList;

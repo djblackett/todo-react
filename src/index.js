@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import ReactDOM from "react-dom";
 import "./sass/index.scss";
@@ -8,7 +9,7 @@ import store from "./features/app/store.js";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>,

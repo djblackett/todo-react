@@ -4,6 +4,15 @@
 @import "components/list-info";
 @import "helpers/variables";
 
+// ::selection {
+//   color: red;
+//   background-color: red;
+// }
+
+::focus {
+  outline-color: green;
+}
+
 html {
   font-size: 18px;
   font-family: "Josefin Sans", sans-serif;

@@ -1,6 +1,6 @@
 import "./sass/App.scss";
-import { TodoList } from "./TodoList";
-import { InputBar } from "./InputBar";
+import TodoList from "./TodoList";
+import InputBar from "./InputBar";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -28,12 +28,23 @@ function App() {
       mode === "light" ? "hsl(235, 21%, 11%)" : "hsl(236, 33%, 92%)"; // dark or light background color
   }
 
+  function toggleDarkEnter(e) {
+    if (e.keyCode === 13 || e.charCode === 13) {
+      handleLogoChange();
+    }
+  }
+
   return (
-    <div className="App">
+    <div className="App" data-testid="app-component-test">
       <div className={`background-img-${mode}`} id="background-img"></div>
       <header>
         <h1>TODO</h1>
-        <div id="svgContainer" onClick={handleLogoChange}>
+        <div
+          tabIndex={0}
+          onKeyDown={toggleDarkEnter}
+          id="svgContainer"
+          onClick={handleLogoChange}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
             <path fill="#FFF" fillRule="evenodd" d={image} />
           </svg>

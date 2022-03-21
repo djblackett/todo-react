@@ -2,10 +2,16 @@
 
 .input-component-light {
   background-color: $lightItemBackground;
+  &:focus {
+    border: 2px solid black;
+  }
 }
 
 .input-component-dark {
   background-color: $darkItem;
+  &:focus {
+    border: 2px solid white;
+  }
 }
 
 #input-component {
@@ -20,6 +26,7 @@
   border-radius: 5px;
   overflow: hidden;
   padding: 10px 0;
+  outline: 0 !important;
 
   @media (max-width: 700px) {
     width: 90%;

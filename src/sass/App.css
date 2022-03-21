@@ -72,6 +72,10 @@
   z-index: 5;
 }
 
+#list-item #outer-circle:focus {
+  border: 2px solid red;
+}
+
 #list-item #outer-circle #circle {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -124,12 +128,24 @@
   pointer-events: none;
 }
 
+#list-item #crossIcon:focus {
+  border: 2px solid black;
+}
+
 .input-component-light {
   background-color: #fafafa;
 }
 
+.input-component-light:focus {
+  border: 2px solid black;
+}
+
 .input-component-dark {
   background-color: #25273c;
+}
+
+.input-component-dark:focus {
+  border: 2px solid white;
 }
 
 #input-component {
@@ -150,6 +166,8 @@
           box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   border-radius: 5px;
   overflow: hidden;
+  padding: 10px 0;
+  outline: 0 !important;
 }
 
 @media (max-width: 700px) {
@@ -259,6 +277,12 @@
   }
 }
 
+@media (max-width: 400px) {
+  #list-info {
+    font-size: 12px;
+  }
+}
+
 #list-info #completion-status {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -324,6 +348,10 @@
 
 #list-info #clear-button:hover {
   cursor: pointer;
+}
+
+::focus {
+  outline-color: green;
 }
 
 html {
@@ -420,6 +448,12 @@ body .App header #svgContainer svg {
 
 body .App header #svgContainer path {
   pointer-events: none;
+}
+
+@media (max-width: 400px) {
+  body .App header #svgContainer {
+    margin-left: 10px;
+  }
 }
 
 body .App .circle-dark {
