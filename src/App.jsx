@@ -35,43 +35,45 @@ function App() {
   }
 
   return (
-    <div className="App" data-testid="app-component-test">
-      <div className={`background-img-${mode}`} id="background-img"></div>
-      <header>
-        <h1>TODO</h1>
-        <div
-          tabIndex={0}
-          onKeyDown={toggleDarkEnter}
-          id="svgContainer"
-          onClick={handleLogoChange}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
-            <path fill="#FFF" fillRule="evenodd" d={image} />
-          </svg>
+    <main>
+      <div className="App" data-testid="app-component-test">
+        <div className={`background-img-${mode}`} id="background-img"></div>
+        <header>
+          <h1>TODO</h1>
+          <div
+            tabIndex={0}
+            onKeyDown={toggleDarkEnter}
+            id="svgContainer"
+            onClick={handleLogoChange}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+              <path fill="#FFF" fillRule="evenodd" d={image} />
+            </svg>
+          </div>
+        </header>
+        <InputBar />
+        <TodoList />
+        <p className="drag">Drag and drop to reorder list</p>
+        <div className="attribution">
+          Challenge by{" "}
+          <a
+            href="https://www.frontendmentor.io?ref=challenge"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Frontend Mentor
+          </a>
+          . Coded by <a href="#">David Andrea</a>.
         </div>
-      </header>
-      <InputBar />
-      <TodoList />
-      <p className="drag">Drag and drop to reorder list</p>
-      <div className="attribution">
-        Challenge by{" "}
-        <a
-          href="https://www.frontendmentor.io?ref=challenge"
-          target="_blank"
-          rel="noreferrer"
+        <button
+          className={`reset-${mode}`}
+          id="reset"
+          onClick={() => dispatch(resetList())}
         >
-          Frontend Mentor
-        </a>
-        . Coded by <a href="#">David Andrea</a>.
+          Reset todo list
+        </button>
       </div>
-      <button
-        className={`reset-${mode}`}
-        id="reset"
-        onClick={() => dispatch(resetList())}
-      >
-        Reset todo list
-      </button>
-    </div>
+    </main>
   );
 }
 
