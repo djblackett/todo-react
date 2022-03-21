@@ -60,6 +60,12 @@
     width: $circleDiameter;
     border-radius: 50%;
     z-index: 5;
+    &:focus {
+      border: 2px solid red;              
+    }
+    &:focus-within #crossIcon {
+      visibility: visible;
+    }
 
     #circle {
       justify-content: center;
@@ -104,5 +110,9 @@
     justify-self: flex-end;
     visibility: hidden;
     pointer-events: none;
+    &:focus {
+      visibility: visible;
+      border: 2px solid black;
+    }
   }
 }

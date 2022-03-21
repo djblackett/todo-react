@@ -42,6 +42,8 @@
 
     .list-option {
       margin: 10px;
+      border: none;
+      background-color: transparent;
       &:hover {
         cursor: pointer;
       }
@@ -82,7 +84,7 @@
 
   #clear-button {
     border: none;
-    outline: none;
+    // outline: none;
     background-color: transparent;
     font-family: "Josefin Sans", sans-serif;
     &:hover {
